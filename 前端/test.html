@@ -1,3 +1,55 @@
-<h1>
-    helloworld
-</h1>
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="utf-8">
+    <title>NEFU--test</title>
+
+    <style>
+        .h1{
+            width: 100px;
+        }
+        .testtable{
+            border: black;
+            border-style: double;
+            border-radius: 20px;
+            border-width: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 class="h1">hello word</h1>
+<p>hello</p>
+<table class="testtable">
+    <tr>
+        <td>啤酒</td>
+        <td>白酒</td>
+        <td>红酒</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+</table>
+<div id="app">
+{{ message }}
+</div>
+<!-- 引入vue -->
+<script src="./Vue.js"></script>
+<script>
+    Vue.createApp({
+        data(){
+            return {
+                message: 'hello world'
+            }
+        }
+    })
+    .mount('#app')
+</script>
+</body>
+
+
+</html>
