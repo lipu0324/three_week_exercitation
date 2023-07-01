@@ -1,0 +1,69 @@
+<!--
+ * @Descripttion: 
+ * @Author: Dyl
+ * @Date: 2021-10-20 09:24:12
+-->
+<template>
+  <div class="scroll-container" ref="scrollContainer"  >
+    <div class="scroll-wrapper" ref="scrollWrapper" >
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<script>
+const delta = 15
+
+export default {
+  name: 'scrollBar',
+  data() {
+    return {
+      top: 70
+    }
+  },
+  methods: {
+    handleScroll(e) {
+      const eventDelta = e.wheelDelta || -e.deltaY * 3
+      const $container = this.$refs.scrollContainer
+      const $containerHeight = $container.offsetHeight
+      const $wrapper = this.$refs.scrollWrapper
+      const $wrapperHeight = $wrapper.offsetHeight
+      if (eventDelta > 0) {
+        this.top = (Math.min(0, this.top + eventDelta)) + 70
+      } else {
+        if ($containerHeight - delta < $wrapperHeight) {
+          if (this.top < -($wrapperHeight - $containerHeight + delta)) {
+            this.top = this.top
+          } else {
+            this.top =  (Math.max(this.top + eventDelta, $containerHeight - $wrapperHeight - delta))+50
+          }
+        } else {
+          this.top = 70
+        }
+      }
+    }
+  }
+}
+</script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+@import '../../styles/variables.scss';
+
+.scroll-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $menuBg;
+  .scroll-wrapper {
+    position: absolute;
+     width: 100%!important;
+     height: 100vh;
+    padding-top: 70px;
+    overflow-y: auto;
+    box-sizing:border-box;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+  }
+  .scroll-wrapper::-webkit-scrollbar { width: 0 !important }
+}
+</style>
