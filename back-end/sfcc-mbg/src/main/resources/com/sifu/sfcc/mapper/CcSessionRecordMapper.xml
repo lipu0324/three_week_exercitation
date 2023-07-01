@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.mapper.CcSessionRecordMapper">
+  <resultMap id="BaseResultMap" type="com.sifu.sfcc.model.CcSessionRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="session_code" jdbcType="VARCHAR" property="sessionCode" />
+    <result column="from_name" jdbcType="VARCHAR" property="fromName" />
+    <result column="from_id" jdbcType="BIGINT" property="fromId" />
+    <result column="from_type" jdbcType="CHAR" property="fromType" />
+    <result column="to_name" jdbcType="VARCHAR" property="toName" />
+    <result column="to_id" jdbcType="BIGINT" property="toId" />
+    <result column="to_type" jdbcType="CHAR" property="toType" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="type" jdbcType="CHAR" property="type" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, session_code, from_name, from_id, from_type, to_name, to_id, to_type, content, 
+    time, type
+  </sql>
+  <select id="selectByExample" parameterType="com.sifu.sfcc.model.CcSessionRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cc_session_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cc_session_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cc_session_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sifu.sfcc.model.CcSessionRecordExample">
+    delete from cc_session_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sifu.sfcc.model.CcSessionRecord">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cc_session_record (session_code, from_name, from_id, 
+      from_type, to_name, to_id, 
+      to_type, content, time, 
+      type)
+    values (#{sessionCode,jdbcType=VARCHAR}, #{fromName,jdbcType=VARCHAR}, #{fromId,jdbcType=BIGINT}, 
+      #{fromType,jdbcType=CHAR}, #{toName,jdbcType=VARCHAR}, #{toId,jdbcType=BIGINT}, 
+      #{toType,jdbcType=CHAR}, #{content,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sifu.sfcc.model.CcSessionRecord">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cc_session_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sessionCode != null">
+        session_code,
+      </if>
+      <if test="fromName != null">
+        from_name,
+      </if>
+      <if test="fromId != null">
+        from_id,
+      </if>
+      <if test="fromType != null">
+        from_type,
+      </if>
+      <if test="toName != null">
+        to_name,
+      </if>
+      <if test="toId != null">
+        to_id,
+      </if>
+      <if test="toType != null">
+        to_type,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sessionCode != null">
+        #{sessionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fromName != null">
+        #{fromName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromId != null">
+        #{fromId,jdbcType=BIGINT},
+      </if>
+      <if test="fromType != null">
+        #{fromType,jdbcType=CHAR},
+      </if>
+      <if test="toName != null">
+        #{toName,jdbcType=VARCHAR},
+      </if>
+      <if test="toId != null">
+        #{toId,jdbcType=BIGINT},
+      </if>
+      <if test="toType != null">
+        #{toType,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sifu.sfcc.model.CcSessionRecordExample" resultType="java.lang.Long">
+    select count(*) from cc_session_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cc_session_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sessionCode != null">
+        session_code = #{record.sessionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromName != null">
+        from_name = #{record.fromName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromId != null">
+        from_id = #{record.fromId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fromType != null">
+        from_type = #{record.fromType,jdbcType=CHAR},
+      </if>
+      <if test="record.toName != null">
+        to_name = #{record.toName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toId != null">
+        to_id = #{record.toId,jdbcType=BIGINT},
+      </if>
+      <if test="record.toType != null">
+        to_type = #{record.toType,jdbcType=CHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cc_session_record
+    set id = #{record.id,jdbcType=BIGINT},
+      session_code = #{record.sessionCode,jdbcType=VARCHAR},
+      from_name = #{record.fromName,jdbcType=VARCHAR},
+      from_id = #{record.fromId,jdbcType=BIGINT},
+      from_type = #{record.fromType,jdbcType=CHAR},
+      to_name = #{record.toName,jdbcType=VARCHAR},
+      to_id = #{record.toId,jdbcType=BIGINT},
+      to_type = #{record.toType,jdbcType=CHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sifu.sfcc.model.CcSessionRecord">
+    update cc_session_record
+    <set>
+      <if test="sessionCode != null">
+        session_code = #{sessionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fromName != null">
+        from_name = #{fromName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromId != null">
+        from_id = #{fromId,jdbcType=BIGINT},
+      </if>
+      <if test="fromType != null">
+        from_type = #{fromType,jdbcType=CHAR},
+      </if>
+      <if test="toName != null">
+        to_name = #{toName,jdbcType=VARCHAR},
+      </if>
+      <if test="toId != null">
+        to_id = #{toId,jdbcType=BIGINT},
+      </if>
+      <if test="toType != null">
+        to_type = #{toType,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sifu.sfcc.model.CcSessionRecord">
+    update cc_session_record
+    set session_code = #{sessionCode,jdbcType=VARCHAR},
+      from_name = #{fromName,jdbcType=VARCHAR},
+      from_id = #{fromId,jdbcType=BIGINT},
+      from_type = #{fromType,jdbcType=CHAR},
+      to_name = #{toName,jdbcType=VARCHAR},
+      to_id = #{toId,jdbcType=BIGINT},
+      to_type = #{toType,jdbcType=CHAR},
+      content = #{content,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.dao.XmkKeywordDao">
+	<insert id="saveQ" parameterType="com.sifu.sfcc.bo.SaveSMS" >
+        INSERT INTO
+          xmk_keyword(keyword,type,phone,call_id,create_time)
+        VALUES
+          (#{keyword},#{type},#{phone},#{callId},NOW())
+    </insert>
+
+    <select id="selectKeyWordPhoneBySessionId" parameterType="java.lang.String" resultType="com.sifu.sfcc.bo.SaveSMS">
+        SELECT
+          id,keyword,type,phone,call_id,create_time
+        FROM
+          xmk_keyword
+        WHERE
+          call_id = #{sessionId}
+    </select>
+
+    <select id="getSendInfo"  resultType="java.lang.String">
+        SELECT distinct
+            keyword
+        FROM
+            xmk_keyword
+        WHERE
+            type in (${type})
+    </select>
+
+</mapper>

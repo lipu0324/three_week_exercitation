@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.dao.CcArchivesDao">
+	
+	 <select id="getArchives" resultType="com.sifu.sfcc.dto.CcArchivesParam">
+        
+        select ca.*,ua.code sit_down,
+(select um.phone from ums_member um where um.archives_id = ca.id limit 1) phone,
+(select content.urgency from cc_archives_content content where content.archives_id = ca.id order by content.created_time desc limit 1) urgency,
+(select GROUP_CONCAT(cac.labels) from cc_archives_content cac where cac.archives_id = ca.id) label
+from cc_archives ca  join ums_admin ua on ua.id = ca.created_by
+		<where>
+			<if test="name != null and name != ''">
+				AND ca.name like concat('%', #{name}, '%')
+			</if>
+			<if test="code != null and code != ''">
+				AND ca.code like concat('%', #{code}, '%')
+			</if>
+			<if test="nameOrUrgency != null and nameOrUrgency != ''">
+				AND (ca.code like concat('%', #{nameOrUrgency}, '%') or ca.name like concat('%', #{nameOrUrgency}, '%'))
+			</if>
+			<if test="urgency != null and urgency != ''">
+				AND (select content.urgency from cc_archives_content content where content.archives_id = ca.id order by content.created_time desc limit 1) = #{urgency}
+			</if>
+		</where>
+	        order by ca.created_time desc
+        
+    </select>
+    
+     <select id="getArchivesExport" resultType="com.sifu.sfcc.dto.CcArchivesExport">
+        
+        select ca.*,ua.code sit_down,
+(select um.phone from ums_member um where um.archives_id = ca.id limit 1) phone,
+(select content.urgency from cc_archives_content content where content.archives_id = ca.id order by content.created_time desc limit 1) urgency,
+(select GROUP_CONCAT(cac.labels) from cc_archives_content cac where cac.archives_id = ca.id) label
+from cc_archives ca  join ums_admin ua on ua.id = ca.created_by
+		<where>
+			<if test="name != null and name != ''">
+				AND ca.name like concat('%', #{name}, '%')
+			</if>
+			<if test="code != null and code != ''">
+				AND ca.code like concat('%', #{code}, '%')
+			</if>
+			<if test="nameOrUrgency != null and nameOrUrgency != ''">
+				AND (ca.code like concat('%', #{nameOrUrgency}, '%') or ca.name like concat('%', #{nameOrUrgency}, '%'))
+			</if>
+			<if test="urgency != null and urgency != ''">
+				AND (select content.urgency from cc_archives_content content where content.archives_id = ca.id order by content.created_time desc limit 1) = #{urgency}
+			</if>
+		</where>
+	        order by ca.created_time desc
+        
+    </select>
+    
+     <select id="getArchivesCount" resultType="com.sifu.sfcc.dto.CcArchivesParam">
+         select t1.created_time,count(*) count from cc_archives ca join 
+ (select archives_id,max(created_time) created_time from cc_archives_content where labels like concat('%', #{label}, '%') and created_time &lt; #{endTime} and created_time > #{startTime} group by archives_id) t1
+ on ca.id = t1.archives_id
+ GROUP BY t1.created_time 
+    </select>
+    
+     <select id="labelCount" resultType="Long">
+        select count(*) from cc_archives where id in( select DISTINCT(archives_id) from cc_archives_content where labels like concat('%', #{label}, '%')) 
+    </select>
+
+</mapper>

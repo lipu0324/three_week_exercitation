@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.dao.CcNaireDao">	
+
+	<select id="getQuestion" resultType="com.sifu.sfcc.model.CcNaireQuestion">
+       
+       select * from cc_naire_question where is_first=1 and naire_id = 
+       (select ct.naire_id from cc_call_task ct where ct.status= 1 and ct.filter like concat('%', #{phone}, '%') limit 1) 
+        
+        
+    </select>
+    
+    
+    <select id="getAnswer" resultType="com.sifu.sfcc.model.CcNaireAnswer">
+       
+       select ca.* from cc_naire_answer ca where ca.question_id in(
+		select cq.id from cc_naire_question cq where cq.naire_id =
+		(select ct.naire_id from cc_call_task ct where ct.status= 1 and ct.filter like concat('%', #{phone}, '%') limit 1) 
+		) order by ca.question_id desc
+        
+    </select>
+    
+    <select id="listQuestion" resultType="com.sifu.sfcc.dto.CcNaireQuestionParam">
+       
+      
+		select nq.*,na.title naire_title from cc_naire_question nq join cc_naire na on nq.naire_id = na.id 
+		<where>
+		 	<if test='naireId != null and naireId != 0'>
+            nq.naire_id = #{naireId}
+        	</if>
+		</where>
+	
+    </select>
+    <select id="listNoQuestion" resultType="com.sifu.sfcc.dto.CcNaireQuestionParam">
+      
+      
+		select nq.* from cc_naire_question nq
+		where nq.naire_id = #{naireId}
+		and (nq.is_first = 0 or nq.is_first is NULL)
+		and nq.id not in (select cnq.is_true_id from cc_naire_question cnq where cnq.naire_id = #{naireId} and cnq.is_true_id is not null)
+		and nq.id not in (select cnq.is_false_id from cc_naire_question cnq where cnq.naire_id = #{naireId} and cnq.is_false_id is not null)
+		and nq.id not in (select cnq.next_id from cc_naire_question cnq where cnq.naire_id = #{naireId} and cnq.next_id is not null)
+		
+		union 
+		select q1.* from cc_naire_question q1
+		where q1.id in (select cnq.is_false_id from cc_naire_question cnq where cnq.id=#{questionId} ) 
+		
+		union 
+		select q2.* from cc_naire_question q2
+		where q2.id in (select cnq.is_true_id from cc_naire_question cnq where cnq.id=#{questionId}) 
+		
+		union 
+		select q3.* from cc_naire_question q3
+		where q3.id in (select cnq.next_id from cc_naire_question cnq where cnq.id=#{questionId}) 
+      
+    </select>
+    
+    <select id="getNaireQuestion" resultType="com.sifu.sfcc.model.CcNaireQuestion">
+       
+       select * from cc_naire_question where  naire_id = #{naireId} and (is_true_id=#{id} or is_false_id=#{id} or next_id=#{id})
+        
+    </select>
+    
+</mapper>

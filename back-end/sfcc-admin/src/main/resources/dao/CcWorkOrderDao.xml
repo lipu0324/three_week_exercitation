@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.dao.CcWorkOrderDao">
+    <resultMap id="BaseResultMap" type="com.sifu.sfcc.model.CcWorkOrder">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="archives_code" jdbcType="VARCHAR" property="archivesCode"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_id" jdbcType="BIGINT" property="createId"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="create_dept" jdbcType="VARCHAR" property="createDept"/>
+        <result column="create_code" jdbcType="VARCHAR" property="createCode"/>
+        <result column="dealer_id" jdbcType="BIGINT" property="dealerId"/>
+        <result column="dealer_code" jdbcType="VARCHAR" property="dealerCode"/>
+        <result column="dealer" jdbcType="VARCHAR" property="dealer"/>
+        <result column="dealer_dept" jdbcType="VARCHAR" property="dealerDept"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="current_dealer" jdbcType="VARCHAR" property="currentDealer"/>
+        <result column="current_dealer_id" jdbcType="BIGINT" property="currentDealerId"/>
+        <result column="concat" jdbcType="VARCHAR" property="concat"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="archives_remark" jdbcType="VARCHAR" property="archivesRemark"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="submit_time" jdbcType="TIMESTAMP" property="submitTime"/>
+        <result column="title" jdbcType="LONGVARCHAR" property="title"/>
+        <result column="addr" jdbcType="LONGVARCHAR" property="addr"/>
+        <result column="label" jdbcType="LONGVARCHAR" property="label"/>
+    </resultMap>
+
+    <select id="listWorkOrder" resultMap="BaseResultMap">
+        select distinct A.* from cc_work_order A left join cc_work_order_trace B on(A.id = B.work_order_id)
+        where (B.from_id = #{loginId} or B.to_id = #{loginId}) and A.STATUS = #{status}
+        <if test="currentDealerId != null and currentDealerId != ''">
+            and A.current_dealer_id = #{currentDealerId}
+        </if>
+        order by A.create_time desc
+    </select>
+    
+    <select id="getCount" resultType="com.sifu.sfcc.dto.CcWorkOrderCount">
+       select status,count(*) count from cc_work_order 
+       <where> 
+	        <if test="startTime != null and startTime != ''">
+	            and create_time > #{startTime}
+	        </if>
+	        <if test="endTime != null and endTime != ''">
+	            and create_time &lt; #{endTime}
+	        </if>
+	        <if test="dealerId != null and dealerId != ''">
+	            and dealer_id = #{dealerId}
+	        </if>
+        </where> 
+        GROUP BY status 
+    </select>
+    
+    
+   
+</mapper>

@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.mapper.XmkProjectMapper">
+  <resultMap id="BaseResultMap" type="com.sifu.sfcc.model.XmkProject">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="S_XM_ID" jdbcType="VARCHAR" property="sXmId" />
+    <result column="S_XM_NAME" jdbcType="VARCHAR" property="sXmName" />
+    <result column="S_XM_AREA" jdbcType="VARCHAR" property="sXmArea" />
+    <result column="S_XM_ORGAN" jdbcType="VARCHAR" property="sXmOrgan" />
+    <result column="S_XM_ORGAN_NAME" jdbcType="VARCHAR" property="sXmOrganName" />
+    <result column="S_XM_HYDM" jdbcType="VARCHAR" property="sXmHydm" />
+    <result column="S_XM_CY" jdbcType="VARCHAR" property="sXmCy" />
+    <result column="S_XM_ZYBK" jdbcType="VARCHAR" property="sXmZybk" />
+    <result column="S_XM_TZFS" jdbcType="VARCHAR" property="sXmTzfs" />
+    <result column="S_XM_TZJE" jdbcType="VARCHAR" property="sXmTzje" />
+    <result column="S_XM_XSSR" jdbcType="VARCHAR" property="sXmXssr" />
+    <result column="S_XM_FLAG" jdbcType="VARCHAR" property="sXmFlag" />
+    <result column="S_XM_YQHSQ" jdbcType="VARCHAR" property="sXmYqhsq" />
+    <result column="S_XM_LR" jdbcType="VARCHAR" property="sXmLr" />
+    <result column="S_XM_SS" jdbcType="VARCHAR" property="sXmSs" />
+    <result column="S_XM_SCJD" jdbcType="VARCHAR" property="sXmScjd" />
+    <result column="S_XM_KYBG" jdbcType="VARCHAR" property="sXmKybg" />
+    <result column="S_XM_NZDGN" jdbcType="VARCHAR" property="sXmNzdgn" />
+    <result column="S_XM_NZDGW" jdbcType="VARCHAR" property="sXmNzdgw" />
+    <result column="S_XM_ZRDW_NAME" jdbcType="VARCHAR" property="sXmZrdwName" />
+    <result column="S_XM_ZRDW_LXR" jdbcType="VARCHAR" property="sXmZrdwLxr" />
+    <result column="S_XM_ZRDW_LXDH" jdbcType="VARCHAR" property="sXmZrdwLxdh" />
+    <result column="S_XM_ZRDW_EMAIL" jdbcType="VARCHAR" property="sXmZrdwEmail" />
+    <result column="S_XM_TBDW_NAME" jdbcType="VARCHAR" property="sXmTbdwName" />
+    <result column="S_XM_TBDW_LXR" jdbcType="VARCHAR" property="sXmTbdwLxr" />
+    <result column="S_XM_TBDW_LXDH" jdbcType="VARCHAR" property="sXmTbdwLxdh" />
+    <result column="S_XM_TBDW_EMAIL" jdbcType="VARCHAR" property="sXmTbdwEmail" />
+    <result column="S_XM_JYRS" jdbcType="VARCHAR" property="sXmJyrs" />
+    <result column="S_XM_ZDCY" jdbcType="VARCHAR" property="sXmZdcy" />
+    <result column="S_XM_ZDCYL_NAME" jdbcType="VARCHAR" property="sXmZdcylName" />
+    <result column="S_XM_YQ" jdbcType="VARCHAR" property="sXmYq" />
+    <result column="S_XM_LLL" jdbcType="VARCHAR" property="sXmLll" />
+    <result column="S_PUBLISH_TIME" jdbcType="TIMESTAMP" property="sPublishTime" />
+    <result column="S_FILE_URL" jdbcType="VARCHAR" property="sFileUrl" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sifu.sfcc.model.XmkProject">
+    <result column="S_XM_INFO" jdbcType="LONGVARCHAR" property="sXmInfo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, S_XM_ID, S_XM_NAME, S_XM_AREA, S_XM_ORGAN, S_XM_ORGAN_NAME, S_XM_HYDM, S_XM_CY, 
+    S_XM_ZYBK, S_XM_TZFS, S_XM_TZJE, S_XM_XSSR, S_XM_FLAG, S_XM_YQHSQ, S_XM_LR, S_XM_SS, 
+    S_XM_SCJD, S_XM_KYBG, S_XM_NZDGN, S_XM_NZDGW, S_XM_ZRDW_NAME, S_XM_ZRDW_LXR, S_XM_ZRDW_LXDH, 
+    S_XM_ZRDW_EMAIL, S_XM_TBDW_NAME, S_XM_TBDW_LXR, S_XM_TBDW_LXDH, S_XM_TBDW_EMAIL, 
+    S_XM_JYRS, S_XM_ZDCY, S_XM_ZDCYL_NAME, S_XM_YQ, S_XM_LLL, S_PUBLISH_TIME, S_FILE_URL
+  </sql>
+  <sql id="Blob_Column_List">
+    S_XM_INFO
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.sifu.sfcc.model.XmkProjectExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from xmk_project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.sifu.sfcc.model.XmkProjectExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xmk_project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from xmk_project
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from xmk_project
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sifu.sfcc.model.XmkProjectExample">
+    delete from xmk_project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sifu.sfcc.model.XmkProject">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into xmk_project (S_XM_ID, S_XM_NAME, S_XM_AREA, 
+      S_XM_ORGAN, S_XM_ORGAN_NAME, S_XM_HYDM, 
+      S_XM_CY, S_XM_ZYBK, S_XM_TZFS, 
+      S_XM_TZJE, S_XM_XSSR, S_XM_FLAG, 
+      S_XM_YQHSQ, S_XM_LR, S_XM_SS, 
+      S_XM_SCJD, S_XM_KYBG, S_XM_NZDGN, 
+      S_XM_NZDGW, S_XM_ZRDW_NAME, S_XM_ZRDW_LXR, 
+      S_XM_ZRDW_LXDH, S_XM_ZRDW_EMAIL, S_XM_TBDW_NAME, 
+      S_XM_TBDW_LXR, S_XM_TBDW_LXDH, S_XM_TBDW_EMAIL, 
+      S_XM_JYRS, S_XM_ZDCY, S_XM_ZDCYL_NAME, 
+      S_XM_YQ, S_XM_LLL, S_PUBLISH_TIME, 
+      S_FILE_URL, S_XM_INFO)
+    values (#{sXmId,jdbcType=VARCHAR}, #{sXmName,jdbcType=VARCHAR}, #{sXmArea,jdbcType=VARCHAR}, 
+      #{sXmOrgan,jdbcType=VARCHAR}, #{sXmOrganName,jdbcType=VARCHAR}, #{sXmHydm,jdbcType=VARCHAR}, 
+      #{sXmCy,jdbcType=VARCHAR}, #{sXmZybk,jdbcType=VARCHAR}, #{sXmTzfs,jdbcType=VARCHAR}, 
+      #{sXmTzje,jdbcType=VARCHAR}, #{sXmXssr,jdbcType=VARCHAR}, #{sXmFlag,jdbcType=VARCHAR}, 
+      #{sXmYqhsq,jdbcType=VARCHAR}, #{sXmLr,jdbcType=VARCHAR}, #{sXmSs,jdbcType=VARCHAR}, 
+      #{sXmScjd,jdbcType=VARCHAR}, #{sXmKybg,jdbcType=VARCHAR}, #{sXmNzdgn,jdbcType=VARCHAR}, 
+      #{sXmNzdgw,jdbcType=VARCHAR}, #{sXmZrdwName,jdbcType=VARCHAR}, #{sXmZrdwLxr,jdbcType=VARCHAR}, 
+      #{sXmZrdwLxdh,jdbcType=VARCHAR}, #{sXmZrdwEmail,jdbcType=VARCHAR}, #{sXmTbdwName,jdbcType=VARCHAR}, 
+      #{sXmTbdwLxr,jdbcType=VARCHAR}, #{sXmTbdwLxdh,jdbcType=VARCHAR}, #{sXmTbdwEmail,jdbcType=VARCHAR}, 
+      #{sXmJyrs,jdbcType=VARCHAR}, #{sXmZdcy,jdbcType=VARCHAR}, #{sXmZdcylName,jdbcType=VARCHAR}, 
+      #{sXmYq,jdbcType=VARCHAR}, #{sXmLll,jdbcType=VARCHAR}, #{sPublishTime,jdbcType=TIMESTAMP}, 
+      #{sFileUrl,jdbcType=VARCHAR}, #{sXmInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sifu.sfcc.model.XmkProject">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into xmk_project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sXmId != null">
+        S_XM_ID,
+      </if>
+      <if test="sXmName != null">
+        S_XM_NAME,
+      </if>
+      <if test="sXmArea != null">
+        S_XM_AREA,
+      </if>
+      <if test="sXmOrgan != null">
+        S_XM_ORGAN,
+      </if>
+      <if test="sXmOrganName != null">
+        S_XM_ORGAN_NAME,
+      </if>
+      <if test="sXmHydm != null">
+        S_XM_HYDM,
+      </if>
+      <if test="sXmCy != null">
+        S_XM_CY,
+      </if>
+      <if test="sXmZybk != null">
+        S_XM_ZYBK,
+      </if>
+      <if test="sXmTzfs != null">
+        S_XM_TZFS,
+      </if>
+      <if test="sXmTzje != null">
+        S_XM_TZJE,
+      </if>
+      <if test="sXmXssr != null">
+        S_XM_XSSR,
+      </if>
+      <if test="sXmFlag != null">
+        S_XM_FLAG,
+      </if>
+      <if test="sXmYqhsq != null">
+        S_XM_YQHSQ,
+      </if>
+      <if test="sXmLr != null">
+        S_XM_LR,
+      </if>
+      <if test="sXmSs != null">
+        S_XM_SS,
+      </if>
+      <if test="sXmScjd != null">
+        S_XM_SCJD,
+      </if>
+      <if test="sXmKybg != null">
+        S_XM_KYBG,
+      </if>
+      <if test="sXmNzdgn != null">
+        S_XM_NZDGN,
+      </if>
+      <if test="sXmNzdgw != null">
+        S_XM_NZDGW,
+      </if>
+      <if test="sXmZrdwName != null">
+        S_XM_ZRDW_NAME,
+      </if>
+      <if test="sXmZrdwLxr != null">
+        S_XM_ZRDW_LXR,
+      </if>
+      <if test="sXmZrdwLxdh != null">
+        S_XM_ZRDW_LXDH,
+      </if>
+      <if test="sXmZrdwEmail != null">
+        S_XM_ZRDW_EMAIL,
+      </if>
+      <if test="sXmTbdwName != null">
+        S_XM_TBDW_NAME,
+      </if>
+      <if test="sXmTbdwLxr != null">
+        S_XM_TBDW_LXR,
+      </if>
+      <if test="sXmTbdwLxdh != null">
+        S_XM_TBDW_LXDH,
+      </if>
+      <if test="sXmTbdwEmail != null">
+        S_XM_TBDW_EMAIL,
+      </if>
+      <if test="sXmJyrs != null">
+        S_XM_JYRS,
+      </if>
+      <if test="sXmZdcy != null">
+        S_XM_ZDCY,
+      </if>
+      <if test="sXmZdcylName != null">
+        S_XM_ZDCYL_NAME,
+      </if>
+      <if test="sXmYq != null">
+        S_XM_YQ,
+      </if>
+      <if test="sXmLll != null">
+        S_XM_LLL,
+      </if>
+      <if test="sPublishTime != null">
+        S_PUBLISH_TIME,
+      </if>
+      <if test="sFileUrl != null">
+        S_FILE_URL,
+      </if>
+      <if test="sXmInfo != null">
+        S_XM_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sXmId != null">
+        #{sXmId,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmName != null">
+        #{sXmName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmArea != null">
+        #{sXmArea,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmOrgan != null">
+        #{sXmOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmOrganName != null">
+        #{sXmOrganName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmHydm != null">
+        #{sXmHydm,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmCy != null">
+        #{sXmCy,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZybk != null">
+        #{sXmZybk,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTzfs != null">
+        #{sXmTzfs,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTzje != null">
+        #{sXmTzje,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmXssr != null">
+        #{sXmXssr,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmFlag != null">
+        #{sXmFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmYqhsq != null">
+        #{sXmYqhsq,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmLr != null">
+        #{sXmLr,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmSs != null">
+        #{sXmSs,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmScjd != null">
+        #{sXmScjd,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmKybg != null">
+        #{sXmKybg,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmNzdgn != null">
+        #{sXmNzdgn,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmNzdgw != null">
+        #{sXmNzdgw,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZrdwName != null">
+        #{sXmZrdwName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZrdwLxr != null">
+        #{sXmZrdwLxr,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZrdwLxdh != null">
+        #{sXmZrdwLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZrdwEmail != null">
+        #{sXmZrdwEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTbdwName != null">
+        #{sXmTbdwName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTbdwLxr != null">
+        #{sXmTbdwLxr,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTbdwLxdh != null">
+        #{sXmTbdwLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTbdwEmail != null">
+        #{sXmTbdwEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmJyrs != null">
+        #{sXmJyrs,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZdcy != null">
+        #{sXmZdcy,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZdcylName != null">
+        #{sXmZdcylName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmYq != null">
+        #{sXmYq,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmLll != null">
+        #{sXmLll,jdbcType=VARCHAR},
+      </if>
+      <if test="sPublishTime != null">
+        #{sPublishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sFileUrl != null">
+        #{sFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmInfo != null">
+        #{sXmInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sifu.sfcc.model.XmkProjectExample" resultType="java.lang.Long">
+    select count(*) from xmk_project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update xmk_project
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sXmId != null">
+        S_XM_ID = #{record.sXmId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmName != null">
+        S_XM_NAME = #{record.sXmName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmArea != null">
+        S_XM_AREA = #{record.sXmArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmOrgan != null">
+        S_XM_ORGAN = #{record.sXmOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmOrganName != null">
+        S_XM_ORGAN_NAME = #{record.sXmOrganName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmHydm != null">
+        S_XM_HYDM = #{record.sXmHydm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmCy != null">
+        S_XM_CY = #{record.sXmCy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmZybk != null">
+        S_XM_ZYBK = #{record.sXmZybk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmTzfs != null">
+        S_XM_TZFS = #{record.sXmTzfs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmTzje != null">
+        S_XM_TZJE = #{record.sXmTzje,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmXssr != null">
+        S_XM_XSSR = #{record.sXmXssr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmFlag != null">
+        S_XM_FLAG = #{record.sXmFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmYqhsq != null">
+        S_XM_YQHSQ = #{record.sXmYqhsq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmLr != null">
+        S_XM_LR = #{record.sXmLr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmSs != null">
+        S_XM_SS = #{record.sXmSs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmScjd != null">
+        S_XM_SCJD = #{record.sXmScjd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmKybg != null">
+        S_XM_KYBG = #{record.sXmKybg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmNzdgn != null">
+        S_XM_NZDGN = #{record.sXmNzdgn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmNzdgw != null">
+        S_XM_NZDGW = #{record.sXmNzdgw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmZrdwName != null">
+        S_XM_ZRDW_NAME = #{record.sXmZrdwName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmZrdwLxr != null">
+        S_XM_ZRDW_LXR = #{record.sXmZrdwLxr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmZrdwLxdh != null">
+        S_XM_ZRDW_LXDH = #{record.sXmZrdwLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmZrdwEmail != null">
+        S_XM_ZRDW_EMAIL = #{record.sXmZrdwEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmTbdwName != null">
+        S_XM_TBDW_NAME = #{record.sXmTbdwName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmTbdwLxr != null">
+        S_XM_TBDW_LXR = #{record.sXmTbdwLxr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmTbdwLxdh != null">
+        S_XM_TBDW_LXDH = #{record.sXmTbdwLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmTbdwEmail != null">
+        S_XM_TBDW_EMAIL = #{record.sXmTbdwEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmJyrs != null">
+        S_XM_JYRS = #{record.sXmJyrs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmZdcy != null">
+        S_XM_ZDCY = #{record.sXmZdcy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmZdcylName != null">
+        S_XM_ZDCYL_NAME = #{record.sXmZdcylName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmYq != null">
+        S_XM_YQ = #{record.sXmYq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmLll != null">
+        S_XM_LLL = #{record.sXmLll,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sPublishTime != null">
+        S_PUBLISH_TIME = #{record.sPublishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sFileUrl != null">
+        S_FILE_URL = #{record.sFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sXmInfo != null">
+        S_XM_INFO = #{record.sXmInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update xmk_project
+    set id = #{record.id,jdbcType=BIGINT},
+      S_XM_ID = #{record.sXmId,jdbcType=VARCHAR},
+      S_XM_NAME = #{record.sXmName,jdbcType=VARCHAR},
+      S_XM_AREA = #{record.sXmArea,jdbcType=VARCHAR},
+      S_XM_ORGAN = #{record.sXmOrgan,jdbcType=VARCHAR},
+      S_XM_ORGAN_NAME = #{record.sXmOrganName,jdbcType=VARCHAR},
+      S_XM_HYDM = #{record.sXmHydm,jdbcType=VARCHAR},
+      S_XM_CY = #{record.sXmCy,jdbcType=VARCHAR},
+      S_XM_ZYBK = #{record.sXmZybk,jdbcType=VARCHAR},
+      S_XM_TZFS = #{record.sXmTzfs,jdbcType=VARCHAR},
+      S_XM_TZJE = #{record.sXmTzje,jdbcType=VARCHAR},
+      S_XM_XSSR = #{record.sXmXssr,jdbcType=VARCHAR},
+      S_XM_FLAG = #{record.sXmFlag,jdbcType=VARCHAR},
+      S_XM_YQHSQ = #{record.sXmYqhsq,jdbcType=VARCHAR},
+      S_XM_LR = #{record.sXmLr,jdbcType=VARCHAR},
+      S_XM_SS = #{record.sXmSs,jdbcType=VARCHAR},
+      S_XM_SCJD = #{record.sXmScjd,jdbcType=VARCHAR},
+      S_XM_KYBG = #{record.sXmKybg,jdbcType=VARCHAR},
+      S_XM_NZDGN = #{record.sXmNzdgn,jdbcType=VARCHAR},
+      S_XM_NZDGW = #{record.sXmNzdgw,jdbcType=VARCHAR},
+      S_XM_ZRDW_NAME = #{record.sXmZrdwName,jdbcType=VARCHAR},
+      S_XM_ZRDW_LXR = #{record.sXmZrdwLxr,jdbcType=VARCHAR},
+      S_XM_ZRDW_LXDH = #{record.sXmZrdwLxdh,jdbcType=VARCHAR},
+      S_XM_ZRDW_EMAIL = #{record.sXmZrdwEmail,jdbcType=VARCHAR},
+      S_XM_TBDW_NAME = #{record.sXmTbdwName,jdbcType=VARCHAR},
+      S_XM_TBDW_LXR = #{record.sXmTbdwLxr,jdbcType=VARCHAR},
+      S_XM_TBDW_LXDH = #{record.sXmTbdwLxdh,jdbcType=VARCHAR},
+      S_XM_TBDW_EMAIL = #{record.sXmTbdwEmail,jdbcType=VARCHAR},
+      S_XM_JYRS = #{record.sXmJyrs,jdbcType=VARCHAR},
+      S_XM_ZDCY = #{record.sXmZdcy,jdbcType=VARCHAR},
+      S_XM_ZDCYL_NAME = #{record.sXmZdcylName,jdbcType=VARCHAR},
+      S_XM_YQ = #{record.sXmYq,jdbcType=VARCHAR},
+      S_XM_LLL = #{record.sXmLll,jdbcType=VARCHAR},
+      S_PUBLISH_TIME = #{record.sPublishTime,jdbcType=TIMESTAMP},
+      S_FILE_URL = #{record.sFileUrl,jdbcType=VARCHAR},
+      S_XM_INFO = #{record.sXmInfo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update xmk_project
+    set id = #{record.id,jdbcType=BIGINT},
+      S_XM_ID = #{record.sXmId,jdbcType=VARCHAR},
+      S_XM_NAME = #{record.sXmName,jdbcType=VARCHAR},
+      S_XM_AREA = #{record.sXmArea,jdbcType=VARCHAR},
+      S_XM_ORGAN = #{record.sXmOrgan,jdbcType=VARCHAR},
+      S_XM_ORGAN_NAME = #{record.sXmOrganName,jdbcType=VARCHAR},
+      S_XM_HYDM = #{record.sXmHydm,jdbcType=VARCHAR},
+      S_XM_CY = #{record.sXmCy,jdbcType=VARCHAR},
+      S_XM_ZYBK = #{record.sXmZybk,jdbcType=VARCHAR},
+      S_XM_TZFS = #{record.sXmTzfs,jdbcType=VARCHAR},
+      S_XM_TZJE = #{record.sXmTzje,jdbcType=VARCHAR},
+      S_XM_XSSR = #{record.sXmXssr,jdbcType=VARCHAR},
+      S_XM_FLAG = #{record.sXmFlag,jdbcType=VARCHAR},
+      S_XM_YQHSQ = #{record.sXmYqhsq,jdbcType=VARCHAR},
+      S_XM_LR = #{record.sXmLr,jdbcType=VARCHAR},
+      S_XM_SS = #{record.sXmSs,jdbcType=VARCHAR},
+      S_XM_SCJD = #{record.sXmScjd,jdbcType=VARCHAR},
+      S_XM_KYBG = #{record.sXmKybg,jdbcType=VARCHAR},
+      S_XM_NZDGN = #{record.sXmNzdgn,jdbcType=VARCHAR},
+      S_XM_NZDGW = #{record.sXmNzdgw,jdbcType=VARCHAR},
+      S_XM_ZRDW_NAME = #{record.sXmZrdwName,jdbcType=VARCHAR},
+      S_XM_ZRDW_LXR = #{record.sXmZrdwLxr,jdbcType=VARCHAR},
+      S_XM_ZRDW_LXDH = #{record.sXmZrdwLxdh,jdbcType=VARCHAR},
+      S_XM_ZRDW_EMAIL = #{record.sXmZrdwEmail,jdbcType=VARCHAR},
+      S_XM_TBDW_NAME = #{record.sXmTbdwName,jdbcType=VARCHAR},
+      S_XM_TBDW_LXR = #{record.sXmTbdwLxr,jdbcType=VARCHAR},
+      S_XM_TBDW_LXDH = #{record.sXmTbdwLxdh,jdbcType=VARCHAR},
+      S_XM_TBDW_EMAIL = #{record.sXmTbdwEmail,jdbcType=VARCHAR},
+      S_XM_JYRS = #{record.sXmJyrs,jdbcType=VARCHAR},
+      S_XM_ZDCY = #{record.sXmZdcy,jdbcType=VARCHAR},
+      S_XM_ZDCYL_NAME = #{record.sXmZdcylName,jdbcType=VARCHAR},
+      S_XM_YQ = #{record.sXmYq,jdbcType=VARCHAR},
+      S_XM_LLL = #{record.sXmLll,jdbcType=VARCHAR},
+      S_PUBLISH_TIME = #{record.sPublishTime,jdbcType=TIMESTAMP},
+      S_FILE_URL = #{record.sFileUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sifu.sfcc.model.XmkProject">
+    update xmk_project
+    <set>
+      <if test="sXmId != null">
+        S_XM_ID = #{sXmId,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmName != null">
+        S_XM_NAME = #{sXmName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmArea != null">
+        S_XM_AREA = #{sXmArea,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmOrgan != null">
+        S_XM_ORGAN = #{sXmOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmOrganName != null">
+        S_XM_ORGAN_NAME = #{sXmOrganName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmHydm != null">
+        S_XM_HYDM = #{sXmHydm,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmCy != null">
+        S_XM_CY = #{sXmCy,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZybk != null">
+        S_XM_ZYBK = #{sXmZybk,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTzfs != null">
+        S_XM_TZFS = #{sXmTzfs,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTzje != null">
+        S_XM_TZJE = #{sXmTzje,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmXssr != null">
+        S_XM_XSSR = #{sXmXssr,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmFlag != null">
+        S_XM_FLAG = #{sXmFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmYqhsq != null">
+        S_XM_YQHSQ = #{sXmYqhsq,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmLr != null">
+        S_XM_LR = #{sXmLr,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmSs != null">
+        S_XM_SS = #{sXmSs,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmScjd != null">
+        S_XM_SCJD = #{sXmScjd,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmKybg != null">
+        S_XM_KYBG = #{sXmKybg,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmNzdgn != null">
+        S_XM_NZDGN = #{sXmNzdgn,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmNzdgw != null">
+        S_XM_NZDGW = #{sXmNzdgw,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZrdwName != null">
+        S_XM_ZRDW_NAME = #{sXmZrdwName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZrdwLxr != null">
+        S_XM_ZRDW_LXR = #{sXmZrdwLxr,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZrdwLxdh != null">
+        S_XM_ZRDW_LXDH = #{sXmZrdwLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZrdwEmail != null">
+        S_XM_ZRDW_EMAIL = #{sXmZrdwEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTbdwName != null">
+        S_XM_TBDW_NAME = #{sXmTbdwName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTbdwLxr != null">
+        S_XM_TBDW_LXR = #{sXmTbdwLxr,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTbdwLxdh != null">
+        S_XM_TBDW_LXDH = #{sXmTbdwLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmTbdwEmail != null">
+        S_XM_TBDW_EMAIL = #{sXmTbdwEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmJyrs != null">
+        S_XM_JYRS = #{sXmJyrs,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZdcy != null">
+        S_XM_ZDCY = #{sXmZdcy,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmZdcylName != null">
+        S_XM_ZDCYL_NAME = #{sXmZdcylName,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmYq != null">
+        S_XM_YQ = #{sXmYq,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmLll != null">
+        S_XM_LLL = #{sXmLll,jdbcType=VARCHAR},
+      </if>
+      <if test="sPublishTime != null">
+        S_PUBLISH_TIME = #{sPublishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sFileUrl != null">
+        S_FILE_URL = #{sFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sXmInfo != null">
+        S_XM_INFO = #{sXmInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sifu.sfcc.model.XmkProject">
+    update xmk_project
+    set S_XM_ID = #{sXmId,jdbcType=VARCHAR},
+      S_XM_NAME = #{sXmName,jdbcType=VARCHAR},
+      S_XM_AREA = #{sXmArea,jdbcType=VARCHAR},
+      S_XM_ORGAN = #{sXmOrgan,jdbcType=VARCHAR},
+      S_XM_ORGAN_NAME = #{sXmOrganName,jdbcType=VARCHAR},
+      S_XM_HYDM = #{sXmHydm,jdbcType=VARCHAR},
+      S_XM_CY = #{sXmCy,jdbcType=VARCHAR},
+      S_XM_ZYBK = #{sXmZybk,jdbcType=VARCHAR},
+      S_XM_TZFS = #{sXmTzfs,jdbcType=VARCHAR},
+      S_XM_TZJE = #{sXmTzje,jdbcType=VARCHAR},
+      S_XM_XSSR = #{sXmXssr,jdbcType=VARCHAR},
+      S_XM_FLAG = #{sXmFlag,jdbcType=VARCHAR},
+      S_XM_YQHSQ = #{sXmYqhsq,jdbcType=VARCHAR},
+      S_XM_LR = #{sXmLr,jdbcType=VARCHAR},
+      S_XM_SS = #{sXmSs,jdbcType=VARCHAR},
+      S_XM_SCJD = #{sXmScjd,jdbcType=VARCHAR},
+      S_XM_KYBG = #{sXmKybg,jdbcType=VARCHAR},
+      S_XM_NZDGN = #{sXmNzdgn,jdbcType=VARCHAR},
+      S_XM_NZDGW = #{sXmNzdgw,jdbcType=VARCHAR},
+      S_XM_ZRDW_NAME = #{sXmZrdwName,jdbcType=VARCHAR},
+      S_XM_ZRDW_LXR = #{sXmZrdwLxr,jdbcType=VARCHAR},
+      S_XM_ZRDW_LXDH = #{sXmZrdwLxdh,jdbcType=VARCHAR},
+      S_XM_ZRDW_EMAIL = #{sXmZrdwEmail,jdbcType=VARCHAR},
+      S_XM_TBDW_NAME = #{sXmTbdwName,jdbcType=VARCHAR},
+      S_XM_TBDW_LXR = #{sXmTbdwLxr,jdbcType=VARCHAR},
+      S_XM_TBDW_LXDH = #{sXmTbdwLxdh,jdbcType=VARCHAR},
+      S_XM_TBDW_EMAIL = #{sXmTbdwEmail,jdbcType=VARCHAR},
+      S_XM_JYRS = #{sXmJyrs,jdbcType=VARCHAR},
+      S_XM_ZDCY = #{sXmZdcy,jdbcType=VARCHAR},
+      S_XM_ZDCYL_NAME = #{sXmZdcylName,jdbcType=VARCHAR},
+      S_XM_YQ = #{sXmYq,jdbcType=VARCHAR},
+      S_XM_LLL = #{sXmLll,jdbcType=VARCHAR},
+      S_PUBLISH_TIME = #{sPublishTime,jdbcType=TIMESTAMP},
+      S_FILE_URL = #{sFileUrl,jdbcType=VARCHAR},
+      S_XM_INFO = #{sXmInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sifu.sfcc.model.XmkProject">
+    update xmk_project
+    set S_XM_ID = #{sXmId,jdbcType=VARCHAR},
+      S_XM_NAME = #{sXmName,jdbcType=VARCHAR},
+      S_XM_AREA = #{sXmArea,jdbcType=VARCHAR},
+      S_XM_ORGAN = #{sXmOrgan,jdbcType=VARCHAR},
+      S_XM_ORGAN_NAME = #{sXmOrganName,jdbcType=VARCHAR},
+      S_XM_HYDM = #{sXmHydm,jdbcType=VARCHAR},
+      S_XM_CY = #{sXmCy,jdbcType=VARCHAR},
+      S_XM_ZYBK = #{sXmZybk,jdbcType=VARCHAR},
+      S_XM_TZFS = #{sXmTzfs,jdbcType=VARCHAR},
+      S_XM_TZJE = #{sXmTzje,jdbcType=VARCHAR},
+      S_XM_XSSR = #{sXmXssr,jdbcType=VARCHAR},
+      S_XM_FLAG = #{sXmFlag,jdbcType=VARCHAR},
+      S_XM_YQHSQ = #{sXmYqhsq,jdbcType=VARCHAR},
+      S_XM_LR = #{sXmLr,jdbcType=VARCHAR},
+      S_XM_SS = #{sXmSs,jdbcType=VARCHAR},
+      S_XM_SCJD = #{sXmScjd,jdbcType=VARCHAR},
+      S_XM_KYBG = #{sXmKybg,jdbcType=VARCHAR},
+      S_XM_NZDGN = #{sXmNzdgn,jdbcType=VARCHAR},
+      S_XM_NZDGW = #{sXmNzdgw,jdbcType=VARCHAR},
+      S_XM_ZRDW_NAME = #{sXmZrdwName,jdbcType=VARCHAR},
+      S_XM_ZRDW_LXR = #{sXmZrdwLxr,jdbcType=VARCHAR},
+      S_XM_ZRDW_LXDH = #{sXmZrdwLxdh,jdbcType=VARCHAR},
+      S_XM_ZRDW_EMAIL = #{sXmZrdwEmail,jdbcType=VARCHAR},
+      S_XM_TBDW_NAME = #{sXmTbdwName,jdbcType=VARCHAR},
+      S_XM_TBDW_LXR = #{sXmTbdwLxr,jdbcType=VARCHAR},
+      S_XM_TBDW_LXDH = #{sXmTbdwLxdh,jdbcType=VARCHAR},
+      S_XM_TBDW_EMAIL = #{sXmTbdwEmail,jdbcType=VARCHAR},
+      S_XM_JYRS = #{sXmJyrs,jdbcType=VARCHAR},
+      S_XM_ZDCY = #{sXmZdcy,jdbcType=VARCHAR},
+      S_XM_ZDCYL_NAME = #{sXmZdcylName,jdbcType=VARCHAR},
+      S_XM_YQ = #{sXmYq,jdbcType=VARCHAR},
+      S_XM_LLL = #{sXmLll,jdbcType=VARCHAR},
+      S_PUBLISH_TIME = #{sPublishTime,jdbcType=TIMESTAMP},
+      S_FILE_URL = #{sFileUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

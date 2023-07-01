@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.search.dao.EsXmkPolicyDao">
+    <resultMap id="esXmkPolicyListMap" type="com.sifu.sfcc.search.domain.XmkPolicy" autoMapping="true" >
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="S_YSZY" jdbcType="VARCHAR" property="sYszy" />
+        <result column="S_INFO_PATH" jdbcType="VARCHAR" property="sInfoPath" />
+        <result column="S_UPDATE_USER" jdbcType="VARCHAR" property="sUpdateUser" />
+        <result column="S_CREATE_USER_NAME" jdbcType="VARCHAR" property="sCreateUserName" />
+        <result column="S_ORGAN" jdbcType="VARCHAR" property="sOrgan" />
+        <result column="S_CREATE_DATE" jdbcType="TIMESTAMP" property="sCreateDate" />
+        <result column="S_UPDATE_DATE" jdbcType="TIMESTAMP" property="sUpdateDate" />
+        <result column="S_BM_TYPE" jdbcType="VARCHAR" property="sBmType" />
+        <result column="S_FILE_NAME" jdbcType="VARCHAR" property="sFileName" />
+        <result column="S_CREATE_USER" jdbcType="VARCHAR" property="sCreateUser" />
+        <result column="S_SP_DATE" jdbcType="TIMESTAMP" property="sSpDate" />
+        <result column="S_XQKFQ" jdbcType="VARCHAR" property="sXqkfq" />
+        <result column="S_INFO" jdbcType="VARCHAR" property="sInfo" />
+        <result column="S_BM_TYPE_NAME" jdbcType="VARCHAR" property="sBmTypeName" />
+        <result column="S_FILE_PATH" jdbcType="VARCHAR" property="sFilePath" />
+        <result column="S_TYPE" jdbcType="VARCHAR" property="sType" />
+        <result column="S_TITLE" jdbcType="VARCHAR" property="sTitle" />
+        <result column="S_UUID" jdbcType="VARCHAR" property="sUuid" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+         id , S_YSZY, S_INFO_PATH, S_UPDATE_USER, S_CREATE_USER_NAME, S_ORGAN, S_CREATE_DATE, S_UPDATE_DATE,
+         S_BM_TYPE, S_FILE_NAME, S_CREATE_USER, S_SP_DATE, S_XQKFQ, S_INFO, S_BM_TYPE_NAME,
+         S_FILE_PATH, S_TYPE, S_TITLE, S_UUID
+    </sql>
+    <select id="getAllEsXmkPolicyList" resultMap="esXmkPolicyListMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xmk_policy
+    </select>
+</mapper>

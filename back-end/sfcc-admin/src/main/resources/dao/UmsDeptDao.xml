@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.dao.UmsDeptDao">
+
+	<resultMap type="com.sifu.sfcc.model.UmsDept" id="UmsDeptResult">
+		<id     property="deptId"     column="dept_id"     />
+		<result property="deptName"   column="dept_name"   />
+		<result property="orderNum"   column="order_num"   />
+		<result property="leader"     column="leader"      />
+		<result property="phone"      column="phone"       />
+		<result property="email"      column="email"       />
+		<result property="status"     column="status"      />
+		<result property="delFlag"    column="del_flag"    />
+		<result property="createBy"   column="create_by"   />
+		<result property="createTime" column="create_time" />
+		<result property="updateBy"   column="update_by"   />
+		<result property="updateTime" column="update_time" />
+		<result property="deptPhone"  column="dept_phone" />
+		<result property="city"  column="city" />
+		<result property="remark"  column="remark" />
+	</resultMap>
+	
+	<sql id="selectDeptVo">
+        select d.dept_id, d.dept_name, d.order_num, d.leader, d.phone, d.email, d.status, d.del_flag, d.create_by, d.create_time, d.dept_phone, d.city,d.remark 
+        from ums_dept d 
+    </sql>
+    
+	<select id="selectDeptList" parameterType="com.sifu.sfcc.model.UmsDept" resultMap="UmsDeptResult">
+        <include refid="selectDeptVo"/>
+        where d.del_flag = '0' 
+		<if test="deptName != null and deptName != ''">
+			AND d.dept_name like concat('%', #{deptName}, '%')
+		</if>
+		<if test="deptPhone != null and deptPhone != ''">
+			AND d.dept_phone like concat('%', #{deptPhone}, '%')
+		</if>
+		<if test="leader != null and leader != ''">
+			AND d.leader like concat('%', #{leader}, '%')
+		</if>
+		<if test="phone != null and phone != ''">
+			AND d.phone like concat('%', #{phone}, '%')
+		</if>
+		<if test="city != null and city != ''">
+			AND d.city like concat('%', #{city}, '%')
+		</if>
+		<if test="status != 2">
+			AND d.status = #{status}
+		</if>
+		order by d.order_num
+    </select>
+    
+    
+    <select id="selectDeptById" parameterType="Long" resultMap="UmsDeptResult">
+		<include refid="selectDeptVo"/>
+		where dept_id = #{deptId}
+	</select>
+	
+	<select id="checkDeptNameUnique" resultMap="UmsDeptResult">
+	    <include refid="selectDeptVo"/>
+		where dept_name=#{deptName}
+	</select>
+    
+    <insert id="insertDept" parameterType="com.sifu.sfcc.model.UmsDept">
+ 		insert into ums_dept(
+ 			<if test="deptId != null and deptId != 0">dept_id,</if>
+ 			<if test="deptName != null and deptName != ''">dept_name,</if>
+ 			<if test="orderNum != null and orderNum != ''">order_num,</if>
+ 			<if test="leader != null and leader != ''">leader,</if>
+ 			<if test="phone != null and phone != ''">phone,</if>
+ 			<if test="email != null and email != ''">email,</if>
+ 			<if test="status != null">status,</if>
+ 			<if test="createBy != null and createBy != ''">create_by,</if>
+ 			<if test="deptPhone != null and deptPhone != ''">dept_phone,</if>
+ 			<if test="city != null and city != ''">city,</if>
+ 			<if test="remark != null and remark != ''">remark,</if>
+ 			create_time
+ 		)values(
+ 			<if test="deptId != null and deptId != 0">#{deptId},</if>
+ 			<if test="deptName != null and deptName != ''">#{deptName},</if>
+ 			<if test="orderNum != null and orderNum != ''">#{orderNum},</if>
+ 			<if test="leader != null and leader != ''">#{leader},</if>
+ 			<if test="phone != null and phone != ''">#{phone},</if>
+ 			<if test="email != null and email != ''">#{email},</if>
+ 			<if test="status != null">#{status},</if>
+ 			<if test="createBy != null and createBy != ''">#{createBy},</if>
+ 			<if test="deptPhone != null and deptPhone != ''">#{deptPhone},</if>
+ 			<if test="city != null and city != ''">#{city},</if>
+ 			<if test="remark != null and remark != ''">#{remark},</if>
+ 			sysdate()
+ 		)
+	</insert>
+	
+	<update id="updateDept" parameterType="com.sifu.sfcc.model.UmsDept">
+ 		update ums_dept
+ 		<set>
+ 			<if test="deptName != null and deptName != ''">dept_name = #{deptName},</if>
+ 			<if test="orderNum != null and orderNum != ''">order_num = #{orderNum},</if>
+ 			<if test="leader != null">leader = #{leader},</if>
+ 			<if test="phone != null">phone = #{phone},</if>
+ 			<if test="email != null">email = #{email},</if>
+ 			<if test="status != null and status != ''">status = #{status},</if>
+ 			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+ 			<if test="deptPhone != null and deptPhone != ''">dept_phone = #{deptPhone},</if>
+ 			<if test="city != null and city != ''">city = #{city},</if>
+ 			<if test="remark != null and remark != ''">remark = #{remark},</if>
+ 			update_time = sysdate()
+ 		</set>
+ 		where dept_id = #{deptId}
+	</update>
+	
+	<delete id="deleteDeptById" parameterType="Long">
+		update ums_dept set del_flag = '2' where dept_id = #{deptId}
+	</delete>
+
+</mapper> 

@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: dev #默认为开发环境
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 50MB #限制文件上传大小为50M
+      max-request-size: 50MB
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath*:com/**/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true #驼峰命名自动识别配置
+
+ #自定义redis key
+redis:
+  database: hrss
+  key:
+    authCode: 'ums:authCode'
+    member: 'ums:member'
+    cruit: 'cms:cruit'
+    company: 'cms:company'
+
+
+  expire:
+    authCode: 90 # 验证码超期时间
+    common: 86400 # 24小时
+
+#分页插件
+pagehelper:
+  auto-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true

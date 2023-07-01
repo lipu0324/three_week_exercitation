@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.search.dao.EsXmkTelsDao">
+    <resultMap id="esXmkTelsListMap" type="com.sifu.sfcc.search.domain.XmkTels" autoMapping="true" >
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="company" jdbcType="VARCHAR" property="company" />
+        <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+        <result column="contact_tel" jdbcType="VARCHAR" property="contactTel" />
+        <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+        <result column="duty_room" jdbcType="VARCHAR" property="dutyRoom" />
+        <result column="territory" jdbcType="VARCHAR" property="territory" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id, company, contacts, contact_tel, contact_phone, duty_room, territory
+    </sql>
+    <select id="getAllEsXmkTelsList" resultMap="esXmkTelsListMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xmk_tels
+    </select>
+</mapper>
