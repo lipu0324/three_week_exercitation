@@ -10,9 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication(scanBasePackages = "com.sifu.sfcc")
 @EnableScheduling
-public class SfccAdminApplication {
+public class SfccTaskApplication {
     public static void main(String[] args) {
         SpringApplication.run(SfccAdminApplication.class, args);
-        
+
     }
 }

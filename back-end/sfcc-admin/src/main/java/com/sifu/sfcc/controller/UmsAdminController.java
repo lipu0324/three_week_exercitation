@@ -58,7 +58,13 @@ public class UmsAdminController {
         }
         return CommonResult.success(umsAdmin);
     }
-
+    @ApiOperation(value = "用户登录")
+    @PostMapping("/login")
+//    //后台登录逻辑
+    public CommonResult login(@RequestBody UmsAdminLoginParam umsAdminLoginParam){
+        String token=adminService.login(umsAdminLoginParam);
+        return CommonResult.success(null);
+}
     @ApiOperation(value = "刷新token")
     @RequestMapping(value = "/refreshToken", method = RequestMethod.GET)
     @ResponseBody
