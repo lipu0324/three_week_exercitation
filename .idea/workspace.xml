@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d1d4a323-2a8e-42f7-a133-160b666677bc" name="更改" comment="加入了失误没有版本控制的代码">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/checksums/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/dependencies-accessors/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/.gradle/vcs-1/gc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="后端" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/front-end/package.json" />
+  </component>
+  <component name="ProjectId" id="2RpArPfjCKsmYCuhZtmGCbt5BvU" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "G:/three_week_exercitation/front-end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "G:\\Jetbrains\\apps\\WebStorm\\ch-0\\231.9161.29\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\three_week_exercitation\后端" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="后端" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="three_week_exercitation" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sifu.sfcc.SfccAdminApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/front-end/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/front-end/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/front-end/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.dev" />
+      <item itemvalue="npm.start" />
+      <item itemvalue="npm.test" />
+      <item itemvalue="Spring Boot.后端" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.test" />
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="d1d4a323-2a8e-42f7-a133-160b666677bc" name="更改" comment="" />
+      <created>1687936848767</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687936848767</updated>
+      <workItem from="1687936853476" duration="466000" />
+      <workItem from="1687938197968" duration="1904000" />
+      <workItem from="1687940954520" duration="84000" />
+      <workItem from="1687941510144" duration="30000" />
+      <workItem from="1687941823770" duration="774000" />
+      <workItem from="1688172634596" duration="1000" />
+      <workItem from="1688172644394" duration="3667000" />
+      <workItem from="1688177714468" duration="6493000" />
+      <workItem from="1688192490217" duration="2036000" />
+      <workItem from="1688197743337" duration="281000" />
+      <workItem from="1688198378854" duration="271000" />
+      <workItem from="1688345335757" duration="53000" />
+      <workItem from="1688347418968" duration="74000" />
+    </task>
+    <task id="LOCAL-00001" summary="后端springboot创建项目">
+      <option name="closed" value="true" />
+      <created>1687938690041</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687938690041</updated>
+    </task>
+    <task id="LOCAL-00002" summary="文件夹结构优化">
+      <option name="closed" value="true" />
+      <created>1687940851060</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1687940851060</updated>
+    </task>
+    <task id="LOCAL-00003" summary="文件夹结构优化">
+      <option name="closed" value="true" />
+      <created>1687940984194</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1687940984194</updated>
+    </task>
+    <task id="LOCAL-00004" summary="创建前端Vue项目">
+      <option name="closed" value="true" />
+      <created>1687941970730</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1687941970730</updated>
+    </task>
+    <task id="LOCAL-00005" summary="引入老师的代码">
+      <option name="closed" value="true" />
+      <created>1688177421828</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688177421828</updated>
+    </task>
+    <task id="LOCAL-00006" summary="修正了代码，前端已经可以运行">
+      <option name="closed" value="true" />
+      <created>1688190347666</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1688190347666</updated>
+    </task>
+    <task id="LOCAL-00007" summary="增加了后端代码">
+      <option name="closed" value="true" />
+      <created>1688191090610</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1688191090610</updated>
+    </task>
+    <task id="LOCAL-00008" summary="加入了失误没有版本控制的代码">
+      <option name="closed" value="true" />
+      <created>1688191378278</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1688191378278</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="后端springboot创建项目" />
+    <MESSAGE value="文件夹结构优化" />
+    <MESSAGE value="创建前端Vue项目" />
+    <MESSAGE value="引入老师的代码" />
+    <MESSAGE value="修正了代码，前端已经可以运行" />
+    <MESSAGE value="增加了后端代码" />
+    <MESSAGE value="加入了失误没有版本控制的代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="加入了失误没有版本控制的代码" />
+  </component>
+</project>
