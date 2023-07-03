@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.search.dao.EsCcKnowledgeDao">
+    <resultMap id="esCcKnowledgeListMap" type="com.sifu.sfcc.search.domain.CcKnowledge" autoMapping="true" >
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="question" jdbcType="VARCHAR" property="question" />
+        <result column="answer" jdbcType="VARCHAR" property="answer" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id, question, answer
+    </sql>
+    <select id="getAllEsCcKnowledgeList" resultMap="esCcKnowledgeListMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cc_knowledge
+    </select>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.dao.XmkPolicyDao">
+	
+    <insert id="zlExportPolicy" >
+        INSERT INTO
+        xmk_policy
+        (
+        S_YSZY , S_INFO_PATH , S_UPDATE_USER ,
+        S_CREATE_USER_NAME , S_ORGAN , S_CREATE_DATE ,
+        S_UPDATE_DATE , S_BM_TYPE , S_FILE_NAME ,
+        S_CREATE_USER , S_SP_DATE , S_XQKFQ ,
+        S_INFO , S_BM_TYPE_NAME , S_FILE_PATH ,
+        S_TYPE , S_TITLE , S_UUID
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.sYszy} , #{item.sInfoPath} , #{item.sUpdateUser} , #{item.sCreateUserName}
+            ,#{item.sOrgan} , #{item.sCreateDate} , #{item.sUpdateDate} , #{item.sBmType}
+            , #{item.sFileName} , #{item.sCreateUser} , #{item.sSpDate} , #{item.sXqkfq}
+            , #{item.sInfo}
+            , #{item.sBmTypeName} , #{item.sFilePath} , #{item.sType} , #{item.sTitle}
+            , #{item.sUuid})
+        </foreach>
+
+    </insert>
+
+    <select id="queryXmkProject" resultType="com.sifu.sfcc.model.XmkProject">
+        SELECT
+        xp.S_XM_ID ,
+        xp.S_PUBLISH_TIME
+        FROM xmk_project xp
+        ORDER BY xp.S_PUBLISH_TIME DESC LIMIT 1
+    </select>
+    
+    <select id="getPolicyCount" resultType="com.sifu.sfcc.model.XmkPolicy">
+        select * from xmk_policy 
+        <where>
+         	<if test="city != null and city != ''">
+         	S_CREATE_USER_NAME like concat('%',#{city},'%') 
+         	</if>
+         	<if test="title != null and title != ''">
+         	and S_TITLE like concat('%',#{title},'%') 
+         	</if>
+        </where>
+        order by S_SP_DATE desc
+    </select>
+    
+    <select id="getPolicyRecommend" resultType="com.sifu.sfcc.dto.PolicyParam">
+       select GROUP_CONCAT(S_TITLE) policyTitle,count(1) count from xmk_policy
+			<where>
+	         	<if test="city != null and city != ''">
+	         	S_CREATE_USER_NAME like concat('%',#{city},'%') 
+	         	</if>
+        	</where>
+        	order by S_SP_DATE desc limit #{pageNum} 
+     
+    </select>
+</mapper>

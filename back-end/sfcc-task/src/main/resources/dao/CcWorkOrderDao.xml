@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.dao.CcWorkOrderDao">
+     
+    <select id="listTask" resultType="com.sifu.sfcc.model.CcWorkOrderTrace">
+       select wot.* from cc_work_order_trace wot where wot.id in (
+	select max(id) from cc_work_order_trace where work_order_id in (
+	select id from cc_work_order where `status`= 4 or (
+	`status` &lt;= 1 and submit_time &lt;= DATE_SUB(NOW(),INTERVAL -1 DAY))
+	) GROUP BY  work_order_id )
+    </select>
+
+</mapper>

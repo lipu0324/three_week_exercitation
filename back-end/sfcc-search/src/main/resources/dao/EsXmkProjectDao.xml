@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.search.dao.EsXmkProjectDao">
+    <resultMap id="esXmkProjectListMap" type="com.sifu.sfcc.search.domain.XmkProject" autoMapping="true" >
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="S_XM_ID" jdbcType="VARCHAR" property="sXmId" />
+        <result column="S_XM_NAME" jdbcType="VARCHAR" property="sXmName" />
+        <result column="S_XM_AREA" jdbcType="VARCHAR" property="sXmArea" />
+        <result column="S_XM_ORGAN" jdbcType="VARCHAR" property="sXmOrgan" />
+        <result column="S_XM_ORGAN_NAME" jdbcType="VARCHAR" property="sXmOrganName" />
+        <result column="S_XM_HYDM" jdbcType="VARCHAR" property="sXmHydm" />
+        <result column="S_XM_CY" jdbcType="VARCHAR" property="sXmCy" />
+        <result column="S_XM_ZYBK" jdbcType="VARCHAR" property="sXmZybk" />
+        <result column="S_XM_TZFS" jdbcType="VARCHAR" property="sXmTzfs" />
+        <result column="S_XM_TZJE" jdbcType="VARCHAR" property="sXmTzje" />
+        <result column="S_XM_XSSR" jdbcType="VARCHAR" property="sXmXssr" />
+        <result column="S_XM_FLAG" jdbcType="VARCHAR" property="sXmFlag" />
+        <result column="S_XM_YQHSQ" jdbcType="VARCHAR" property="sXmYqhsq" />
+        <result column="S_XM_LR" jdbcType="VARCHAR" property="sXmLr" />
+        <result column="S_XM_SS" jdbcType="VARCHAR" property="sXmSs" />
+        <result column="S_XM_SCJD" jdbcType="VARCHAR" property="sXmScjd" />
+        <result column="S_XM_KYBG" jdbcType="VARCHAR" property="sXmKybg" />
+        <result column="S_XM_NZDGN" jdbcType="VARCHAR" property="sXmNzdgn" />
+        <result column="S_XM_NZDGW" jdbcType="VARCHAR" property="sXmNzdgw" />
+        <result column="S_XM_ZRDW_NAME" jdbcType="VARCHAR" property="sXmZrdwName" />
+        <result column="S_XM_ZRDW_LXR" jdbcType="VARCHAR" property="sXmZrdwLxr" />
+        <result column="S_XM_ZRDW_LXDH" jdbcType="VARCHAR" property="sXmZrdwLxdh" />
+        <result column="S_XM_ZRDW_EMAIL" jdbcType="VARCHAR" property="sXmZrdwEmail" />
+        <result column="S_XM_TBDW_NAME" jdbcType="VARCHAR" property="sXmTbdwName" />
+        <result column="S_XM_TBDW_LXR" jdbcType="VARCHAR" property="sXmTbdwLxr" />
+        <result column="S_XM_TBDW_LXDH" jdbcType="VARCHAR" property="sXmTbdwLxdh" />
+        <result column="S_XM_TBDW_EMAIL" jdbcType="VARCHAR" property="sXmTbdwEmail" />
+        <result column="S_XM_JYRS" jdbcType="VARCHAR" property="sXmJyrs" />
+        <result column="S_XM_INFO" jdbcType="VARCHAR" property="sXmInfo" />
+        <result column="S_XM_ZDCY" jdbcType="VARCHAR" property="sXmZdcy" />
+        <result column="S_XM_ZDCYL_NAME" jdbcType="VARCHAR" property="sXmZdcylName" />
+        <result column="S_XM_YQ" jdbcType="VARCHAR" property="sXmYq" />
+        <result column="S_XM_LLL" jdbcType="VARCHAR" property="sXmLll" />
+        <result column="S_PUBLISH_TIME" jdbcType="TIMESTAMP" property="sPublishTime" />
+        <result column="S_FILE_URL" jdbcType="VARCHAR" property="sFileUrl" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id , S_XM_ID, S_XM_NAME, S_XM_AREA, S_XM_ORGAN, S_XM_ORGAN_NAME, S_XM_HYDM, S_XM_CY, S_XM_ZYBK,
+        S_XM_TZFS, S_XM_TZJE, S_XM_XSSR, S_XM_FLAG, S_XM_YQHSQ, S_XM_LR, S_XM_SS, S_XM_SCJD,
+        S_XM_KYBG, S_XM_NZDGN, S_XM_NZDGW, S_XM_ZRDW_NAME, S_XM_ZRDW_LXR, S_XM_ZRDW_LXDH,
+        S_XM_ZRDW_EMAIL, S_XM_TBDW_NAME, S_XM_TBDW_LXR, S_XM_TBDW_LXDH, S_XM_TBDW_EMAIL,
+        S_XM_JYRS, S_XM_INFO, S_XM_ZDCY, S_XM_ZDCYL_NAME, S_XM_YQ, S_XM_LLL, S_PUBLISH_TIME,
+        S_FILE_URL
+    </sql>
+    <select id="getAllEsXmkProjectList" resultMap="esXmkProjectListMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xmk_project
+    </select>
+</mapper>

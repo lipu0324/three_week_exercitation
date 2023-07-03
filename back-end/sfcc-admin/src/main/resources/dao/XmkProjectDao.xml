@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.dao.XmkProjectDao">
+	
+    <insert id="zlExportProject" >
+        INSERT INTO
+        xmk_project
+        (
+        S_XM_ID , S_XM_NAME , S_XM_AREA ,
+        S_XM_ORGAN , S_XM_ORGAN_NAME , S_XM_HYDM ,
+        S_XM_CY , S_XM_ZYBK , S_XM_TZFS ,
+        S_XM_TZJE , S_XM_XSSR , S_XM_FLAG ,
+        S_XM_YQHSQ , S_XM_LR , S_XM_SS ,
+        S_XM_SCJD , S_XM_KYBG , S_XM_NZDGN ,
+        S_XM_NZDGW , S_XM_ZRDW_NAME , S_XM_ZRDW_LXR ,
+        S_XM_ZRDW_LXDH , S_XM_ZRDW_EMAIL , S_XM_TBDW_NAME ,
+        S_XM_TBDW_LXR , S_XM_TBDW_LXDH , S_XM_TBDW_EMAIL ,
+        S_XM_JYRS , S_XM_INFO , S_XM_ZDCY ,
+        S_XM_ZDCYL_NAME , S_XM_YQ , S_XM_LLL ,
+        S_PUBLISH_TIME , S_FILE_URL
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.sXmId} , #{item.sXmName} , #{item.sXmArea} , #{item.sXmOrgan}
+            ,#{item.sXmOrganName} , #{item.sXmHydm} , #{item.sXmCy} , #{item.sXmZybk}
+            , #{item.sXmTzfs} , #{item.sXmTzje} , #{item.sXmXssr} , #{item.sXmFlag} , #{item.sXmYqhsq}
+            , #{item.sXmLr} , #{item.sXmSs} , #{item.sXmScjd} , #{item.sXmKybg}
+            , #{item.sXmNzdgn} , #{item.sXmNzdgw} , #{item.sXmZrdwName} , #{item.sXmZrdwLxr}
+            , #{item.sXmZrdwLxdh} , #{item.sXmZrdwEmail}
+            , #{item.sXmTbdwName} , #{item.sXmTbdwLxr} , #{item.sXmTbdwLxdh} , #{item.sXmTbdwEmail}
+            , #{item.sXmJyrs} , #{item.sXmInfo} , #{item.sXmZdcy} , #{item.sXmZdcylName}
+            , #{item.sXmYq} , #{item.sXmLll} , #{item.sPublishTime} , #{item.sFileUrl})
+        </foreach>
+
+    </insert>
+
+    <select id="queryXmkProject" resultType="com.sifu.sfcc.model.XmkProject">
+        SELECT
+        xp.S_XM_ID ,
+        xp.S_PUBLISH_TIME
+        FROM xmk_project xp
+        ORDER BY xp.S_PUBLISH_TIME DESC LIMIT 1
+    </select>
+    
+     <select id="getCountByLocation" resultType="com.sifu.sfcc.model.XmkProject">
+        select * from xmk_project 
+        <where>
+         	<if test="city != null and city != ''">
+         	#{city} like concat('%',S_XM_AREA,'%') 
+         	</if>
+         	<if test="area != null and area != ''">
+         	and #{area} like concat('%',S_XM_ORGAN,'%') 
+         	</if>
+        </where>
+        order by S_XM_LLL desc
+    </select>
+    
+    <select id="getRecommendType" resultType="com.sifu.sfcc.dto.ProjectParam">   
+     	select GROUP_CONCAT(t1.S_XM_HYDM) project_type from (
+			select S_XM_HYDM,count(*) count from xmk_project  
+			<where>
+	         	<if test="city != null and city != ''">
+	         	#{city} like concat('%',S_XM_AREA,'%') 
+	         	</if>
+	         	<if test="area != null and area != ''">
+	         	 and #{area} like concat('%',S_XM_ORGAN,'%') 
+	         	</if>
+        	</where>
+		GROUP BY S_XM_HYDM order by count desc limit 
+		)t1
+     
+    </select>
+    
+     <select id="getRecommend" resultType="com.sifu.sfcc.dto.ProjectParam">   
+		select GROUP_CONCAT(t1.S_XM_NAME) project_name from (
+			select S_XM_NAME from xmk_project  
+			<where>
+	         	<if test="city != null and city != ''">
+	         	  #{city} like concat('%',S_XM_AREA,'%')
+	         	</if>
+	         	<if test="area != null and area != ''">
+	         	 and #{area} like concat('%',S_XM_ORGAN,'%') 
+	         	</if>
+                <if test="type != null and type != ''">
+                  and S_XM_HYDM like concat('%',#{type},'%')
+                </if>
+        	</where>
+			order by S_XM_LLL desc limit #{pageNum} 
+			)t1
+			     
+    </select>
+    
+     <select id="getLocation" resultType="com.sifu.sfcc.dto.ProjectParam">   
+		select GROUP_CONCAT(t1.S_XM_ORGAN_NAME) location from (
+		select S_XM_ORGAN_NAME from xmk_project  
+			<where>
+	         	<if test="name != null and name != ''">
+	         	S_XM_NAME like concat('%',#{name},'%') 
+	         	</if>
+        	</where>
+			order by S_XM_LLL desc limit #{pageNum} 
+			) t1
+			     
+    </select>
+    
+     <select id="getTotal" resultType="com.sifu.sfcc.dto.ProjectParam">   
+     	select count(*) total_count from xmk_project  
+			<where>
+				<if test="type != null and type != ''">
+					S_XM_HYDM like concat('%',#{type},'%')
+                </if>
+	         	<if test="city != null and city != ''">
+	         	and #{city} like concat('%',S_XM_AREA,'%') 
+	         	</if>
+	         	<if test="area != null and area != ''">
+	         	and #{area} like concat('%',S_XM_ORGAN,'%') 
+	         	</if>
+        	</where>
+    </select>
+    
+</mapper>

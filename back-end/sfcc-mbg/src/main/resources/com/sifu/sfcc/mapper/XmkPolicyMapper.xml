@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sifu.sfcc.mapper.XmkPolicyMapper">
+  <resultMap id="BaseResultMap" type="com.sifu.sfcc.model.XmkPolicy">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="S_YSZY" jdbcType="VARCHAR" property="sYszy" />
+    <result column="S_INFO_PATH" jdbcType="VARCHAR" property="sInfoPath" />
+    <result column="S_UPDATE_USER" jdbcType="VARCHAR" property="sUpdateUser" />
+    <result column="S_CREATE_USER_NAME" jdbcType="VARCHAR" property="sCreateUserName" />
+    <result column="S_ORGAN" jdbcType="VARCHAR" property="sOrgan" />
+    <result column="S_CREATE_DATE" jdbcType="TIMESTAMP" property="sCreateDate" />
+    <result column="S_UPDATE_DATE" jdbcType="TIMESTAMP" property="sUpdateDate" />
+    <result column="S_BM_TYPE" jdbcType="VARCHAR" property="sBmType" />
+    <result column="S_FILE_NAME" jdbcType="VARCHAR" property="sFileName" />
+    <result column="S_CREATE_USER" jdbcType="VARCHAR" property="sCreateUser" />
+    <result column="S_SP_DATE" jdbcType="TIMESTAMP" property="sSpDate" />
+    <result column="S_XQKFQ" jdbcType="VARCHAR" property="sXqkfq" />
+    <result column="S_BM_TYPE_NAME" jdbcType="VARCHAR" property="sBmTypeName" />
+    <result column="S_FILE_PATH" jdbcType="VARCHAR" property="sFilePath" />
+    <result column="S_TYPE" jdbcType="VARCHAR" property="sType" />
+    <result column="S_TITLE" jdbcType="VARCHAR" property="sTitle" />
+    <result column="S_UUID" jdbcType="VARCHAR" property="sUuid" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sifu.sfcc.model.XmkPolicy">
+    <result column="S_INFO" jdbcType="LONGVARCHAR" property="sInfo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, S_YSZY, S_INFO_PATH, S_UPDATE_USER, S_CREATE_USER_NAME, S_ORGAN, S_CREATE_DATE, 
+    S_UPDATE_DATE, S_BM_TYPE, S_FILE_NAME, S_CREATE_USER, S_SP_DATE, S_XQKFQ, S_BM_TYPE_NAME, 
+    S_FILE_PATH, S_TYPE, S_TITLE, S_UUID
+  </sql>
+  <sql id="Blob_Column_List">
+    S_INFO
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.sifu.sfcc.model.XmkPolicyExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from xmk_policy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.sifu.sfcc.model.XmkPolicyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xmk_policy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from xmk_policy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from xmk_policy
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sifu.sfcc.model.XmkPolicyExample">
+    delete from xmk_policy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sifu.sfcc.model.XmkPolicy">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into xmk_policy (S_YSZY, S_INFO_PATH, S_UPDATE_USER, 
+      S_CREATE_USER_NAME, S_ORGAN, S_CREATE_DATE, 
+      S_UPDATE_DATE, S_BM_TYPE, S_FILE_NAME, 
+      S_CREATE_USER, S_SP_DATE, S_XQKFQ, 
+      S_BM_TYPE_NAME, S_FILE_PATH, S_TYPE, 
+      S_TITLE, S_UUID, S_INFO
+      )
+    values (#{sYszy,jdbcType=VARCHAR}, #{sInfoPath,jdbcType=VARCHAR}, #{sUpdateUser,jdbcType=VARCHAR}, 
+      #{sCreateUserName,jdbcType=VARCHAR}, #{sOrgan,jdbcType=VARCHAR}, #{sCreateDate,jdbcType=TIMESTAMP}, 
+      #{sUpdateDate,jdbcType=TIMESTAMP}, #{sBmType,jdbcType=VARCHAR}, #{sFileName,jdbcType=VARCHAR}, 
+      #{sCreateUser,jdbcType=VARCHAR}, #{sSpDate,jdbcType=TIMESTAMP}, #{sXqkfq,jdbcType=VARCHAR}, 
+      #{sBmTypeName,jdbcType=VARCHAR}, #{sFilePath,jdbcType=VARCHAR}, #{sType,jdbcType=VARCHAR}, 
+      #{sTitle,jdbcType=VARCHAR}, #{sUuid,jdbcType=VARCHAR}, #{sInfo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sifu.sfcc.model.XmkPolicy">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into xmk_policy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sYszy != null">
+        S_YSZY,
+      </if>
+      <if test="sInfoPath != null">
+        S_INFO_PATH,
+      </if>
+      <if test="sUpdateUser != null">
+        S_UPDATE_USER,
+      </if>
+      <if test="sCreateUserName != null">
+        S_CREATE_USER_NAME,
+      </if>
+      <if test="sOrgan != null">
+        S_ORGAN,
+      </if>
+      <if test="sCreateDate != null">
+        S_CREATE_DATE,
+      </if>
+      <if test="sUpdateDate != null">
+        S_UPDATE_DATE,
+      </if>
+      <if test="sBmType != null">
+        S_BM_TYPE,
+      </if>
+      <if test="sFileName != null">
+        S_FILE_NAME,
+      </if>
+      <if test="sCreateUser != null">
+        S_CREATE_USER,
+      </if>
+      <if test="sSpDate != null">
+        S_SP_DATE,
+      </if>
+      <if test="sXqkfq != null">
+        S_XQKFQ,
+      </if>
+      <if test="sBmTypeName != null">
+        S_BM_TYPE_NAME,
+      </if>
+      <if test="sFilePath != null">
+        S_FILE_PATH,
+      </if>
+      <if test="sType != null">
+        S_TYPE,
+      </if>
+      <if test="sTitle != null">
+        S_TITLE,
+      </if>
+      <if test="sUuid != null">
+        S_UUID,
+      </if>
+      <if test="sInfo != null">
+        S_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sYszy != null">
+        #{sYszy,jdbcType=VARCHAR},
+      </if>
+      <if test="sInfoPath != null">
+        #{sInfoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="sUpdateUser != null">
+        #{sUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateUserName != null">
+        #{sCreateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="sOrgan != null">
+        #{sOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateDate != null">
+        #{sCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sUpdateDate != null">
+        #{sUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sBmType != null">
+        #{sBmType,jdbcType=VARCHAR},
+      </if>
+      <if test="sFileName != null">
+        #{sFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateUser != null">
+        #{sCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sSpDate != null">
+        #{sSpDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sXqkfq != null">
+        #{sXqkfq,jdbcType=VARCHAR},
+      </if>
+      <if test="sBmTypeName != null">
+        #{sBmTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sFilePath != null">
+        #{sFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="sType != null">
+        #{sType,jdbcType=VARCHAR},
+      </if>
+      <if test="sTitle != null">
+        #{sTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sUuid != null">
+        #{sUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sInfo != null">
+        #{sInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sifu.sfcc.model.XmkPolicyExample" resultType="java.lang.Long">
+    select count(*) from xmk_policy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update xmk_policy
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sYszy != null">
+        S_YSZY = #{record.sYszy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sInfoPath != null">
+        S_INFO_PATH = #{record.sInfoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sUpdateUser != null">
+        S_UPDATE_USER = #{record.sUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sCreateUserName != null">
+        S_CREATE_USER_NAME = #{record.sCreateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sOrgan != null">
+        S_ORGAN = #{record.sOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sCreateDate != null">
+        S_CREATE_DATE = #{record.sCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sUpdateDate != null">
+        S_UPDATE_DATE = #{record.sUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sBmType != null">
+        S_BM_TYPE = #{record.sBmType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sFileName != null">
+        S_FILE_NAME = #{record.sFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sCreateUser != null">
+        S_CREATE_USER = #{record.sCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sSpDate != null">
+        S_SP_DATE = #{record.sSpDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sXqkfq != null">
+        S_XQKFQ = #{record.sXqkfq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sBmTypeName != null">
+        S_BM_TYPE_NAME = #{record.sBmTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sFilePath != null">
+        S_FILE_PATH = #{record.sFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sType != null">
+        S_TYPE = #{record.sType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sTitle != null">
+        S_TITLE = #{record.sTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sUuid != null">
+        S_UUID = #{record.sUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sInfo != null">
+        S_INFO = #{record.sInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update xmk_policy
+    set id = #{record.id,jdbcType=BIGINT},
+      S_YSZY = #{record.sYszy,jdbcType=VARCHAR},
+      S_INFO_PATH = #{record.sInfoPath,jdbcType=VARCHAR},
+      S_UPDATE_USER = #{record.sUpdateUser,jdbcType=VARCHAR},
+      S_CREATE_USER_NAME = #{record.sCreateUserName,jdbcType=VARCHAR},
+      S_ORGAN = #{record.sOrgan,jdbcType=VARCHAR},
+      S_CREATE_DATE = #{record.sCreateDate,jdbcType=TIMESTAMP},
+      S_UPDATE_DATE = #{record.sUpdateDate,jdbcType=TIMESTAMP},
+      S_BM_TYPE = #{record.sBmType,jdbcType=VARCHAR},
+      S_FILE_NAME = #{record.sFileName,jdbcType=VARCHAR},
+      S_CREATE_USER = #{record.sCreateUser,jdbcType=VARCHAR},
+      S_SP_DATE = #{record.sSpDate,jdbcType=TIMESTAMP},
+      S_XQKFQ = #{record.sXqkfq,jdbcType=VARCHAR},
+      S_BM_TYPE_NAME = #{record.sBmTypeName,jdbcType=VARCHAR},
+      S_FILE_PATH = #{record.sFilePath,jdbcType=VARCHAR},
+      S_TYPE = #{record.sType,jdbcType=VARCHAR},
+      S_TITLE = #{record.sTitle,jdbcType=VARCHAR},
+      S_UUID = #{record.sUuid,jdbcType=VARCHAR},
+      S_INFO = #{record.sInfo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update xmk_policy
+    set id = #{record.id,jdbcType=BIGINT},
+      S_YSZY = #{record.sYszy,jdbcType=VARCHAR},
+      S_INFO_PATH = #{record.sInfoPath,jdbcType=VARCHAR},
+      S_UPDATE_USER = #{record.sUpdateUser,jdbcType=VARCHAR},
+      S_CREATE_USER_NAME = #{record.sCreateUserName,jdbcType=VARCHAR},
+      S_ORGAN = #{record.sOrgan,jdbcType=VARCHAR},
+      S_CREATE_DATE = #{record.sCreateDate,jdbcType=TIMESTAMP},
+      S_UPDATE_DATE = #{record.sUpdateDate,jdbcType=TIMESTAMP},
+      S_BM_TYPE = #{record.sBmType,jdbcType=VARCHAR},
+      S_FILE_NAME = #{record.sFileName,jdbcType=VARCHAR},
+      S_CREATE_USER = #{record.sCreateUser,jdbcType=VARCHAR},
+      S_SP_DATE = #{record.sSpDate,jdbcType=TIMESTAMP},
+      S_XQKFQ = #{record.sXqkfq,jdbcType=VARCHAR},
+      S_BM_TYPE_NAME = #{record.sBmTypeName,jdbcType=VARCHAR},
+      S_FILE_PATH = #{record.sFilePath,jdbcType=VARCHAR},
+      S_TYPE = #{record.sType,jdbcType=VARCHAR},
+      S_TITLE = #{record.sTitle,jdbcType=VARCHAR},
+      S_UUID = #{record.sUuid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sifu.sfcc.model.XmkPolicy">
+    update xmk_policy
+    <set>
+      <if test="sYszy != null">
+        S_YSZY = #{sYszy,jdbcType=VARCHAR},
+      </if>
+      <if test="sInfoPath != null">
+        S_INFO_PATH = #{sInfoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="sUpdateUser != null">
+        S_UPDATE_USER = #{sUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateUserName != null">
+        S_CREATE_USER_NAME = #{sCreateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="sOrgan != null">
+        S_ORGAN = #{sOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateDate != null">
+        S_CREATE_DATE = #{sCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sUpdateDate != null">
+        S_UPDATE_DATE = #{sUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sBmType != null">
+        S_BM_TYPE = #{sBmType,jdbcType=VARCHAR},
+      </if>
+      <if test="sFileName != null">
+        S_FILE_NAME = #{sFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateUser != null">
+        S_CREATE_USER = #{sCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sSpDate != null">
+        S_SP_DATE = #{sSpDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sXqkfq != null">
+        S_XQKFQ = #{sXqkfq,jdbcType=VARCHAR},
+      </if>
+      <if test="sBmTypeName != null">
+        S_BM_TYPE_NAME = #{sBmTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sFilePath != null">
+        S_FILE_PATH = #{sFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="sType != null">
+        S_TYPE = #{sType,jdbcType=VARCHAR},
+      </if>
+      <if test="sTitle != null">
+        S_TITLE = #{sTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sUuid != null">
+        S_UUID = #{sUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sInfo != null">
+        S_INFO = #{sInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sifu.sfcc.model.XmkPolicy">
+    update xmk_policy
+    set S_YSZY = #{sYszy,jdbcType=VARCHAR},
+      S_INFO_PATH = #{sInfoPath,jdbcType=VARCHAR},
+      S_UPDATE_USER = #{sUpdateUser,jdbcType=VARCHAR},
+      S_CREATE_USER_NAME = #{sCreateUserName,jdbcType=VARCHAR},
+      S_ORGAN = #{sOrgan,jdbcType=VARCHAR},
+      S_CREATE_DATE = #{sCreateDate,jdbcType=TIMESTAMP},
+      S_UPDATE_DATE = #{sUpdateDate,jdbcType=TIMESTAMP},
+      S_BM_TYPE = #{sBmType,jdbcType=VARCHAR},
+      S_FILE_NAME = #{sFileName,jdbcType=VARCHAR},
+      S_CREATE_USER = #{sCreateUser,jdbcType=VARCHAR},
+      S_SP_DATE = #{sSpDate,jdbcType=TIMESTAMP},
+      S_XQKFQ = #{sXqkfq,jdbcType=VARCHAR},
+      S_BM_TYPE_NAME = #{sBmTypeName,jdbcType=VARCHAR},
+      S_FILE_PATH = #{sFilePath,jdbcType=VARCHAR},
+      S_TYPE = #{sType,jdbcType=VARCHAR},
+      S_TITLE = #{sTitle,jdbcType=VARCHAR},
+      S_UUID = #{sUuid,jdbcType=VARCHAR},
+      S_INFO = #{sInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sifu.sfcc.model.XmkPolicy">
+    update xmk_policy
+    set S_YSZY = #{sYszy,jdbcType=VARCHAR},
+      S_INFO_PATH = #{sInfoPath,jdbcType=VARCHAR},
+      S_UPDATE_USER = #{sUpdateUser,jdbcType=VARCHAR},
+      S_CREATE_USER_NAME = #{sCreateUserName,jdbcType=VARCHAR},
+      S_ORGAN = #{sOrgan,jdbcType=VARCHAR},
+      S_CREATE_DATE = #{sCreateDate,jdbcType=TIMESTAMP},
+      S_UPDATE_DATE = #{sUpdateDate,jdbcType=TIMESTAMP},
+      S_BM_TYPE = #{sBmType,jdbcType=VARCHAR},
+      S_FILE_NAME = #{sFileName,jdbcType=VARCHAR},
+      S_CREATE_USER = #{sCreateUser,jdbcType=VARCHAR},
+      S_SP_DATE = #{sSpDate,jdbcType=TIMESTAMP},
+      S_XQKFQ = #{sXqkfq,jdbcType=VARCHAR},
+      S_BM_TYPE_NAME = #{sBmTypeName,jdbcType=VARCHAR},
+      S_FILE_PATH = #{sFilePath,jdbcType=VARCHAR},
+      S_TYPE = #{sType,jdbcType=VARCHAR},
+      S_TITLE = #{sTitle,jdbcType=VARCHAR},
+      S_UUID = #{sUuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
