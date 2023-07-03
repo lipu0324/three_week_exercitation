@@ -3,7 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+//重要区域，所有的请求都会被代理到这个地址上，这个地址是我们后端的服务地址，我们在部署的时候，只需要修改这个地址就可以了
 module.exports = {
   dev: {
 
@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
       // admin模块
       '/admin-api': {
-        target: 'http://sfcc.edu.koobietech.com',
+        target: 'http://localhost:8013',
         changeOrigin: true,
         pathRewrite: {
           '^/admin-api': ''
@@ -21,7 +21,7 @@ module.exports = {
       },
       // 搜索模块
       '/search-api': {
-        target: 'http://sfcc.edu.koobietech.com',
+        target: 'http://localhost:8013',
         changeOrigin: true,
         pathRewrite: {
           '^/search-api': ''
@@ -29,7 +29,7 @@ module.exports = {
       },
       // 文件服务模块
       '/file-api': {
-        target: 'http://sfcc.edu.koobietech.com',
+        target: 'http://localhost:8013',
         changeOrigin: true,
         pathRewrite: {
           '^/file-api': ''
