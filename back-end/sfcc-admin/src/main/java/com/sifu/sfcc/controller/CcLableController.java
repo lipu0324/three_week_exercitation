@@ -12,13 +12,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/lable")
+@RequestMapping("/label")
 public class CcLableController {
     @Resource
     CcLabelService ccLabelService;
 
     @PostMapping("/add")
     public CommonResult add(@RequestBody CcLabel ccLabel) {
+        System.out.println("启动成功！");
         int res = ccLabelService.add(ccLabel);
         if (res>0)
             return CommonResult.success(null);
