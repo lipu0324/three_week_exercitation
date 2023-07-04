@@ -62,6 +62,10 @@ public class UmsAdminController {
     @PostMapping("/login")
 //    //后台登录逻辑
     public CommonResult login(@RequestBody UmsAdminLoginParam umsAdminLoginParam){
+        System.out.println("用户登录信息");
+        System.out.println(
+                umsAdminLoginParam.getUsername()
+        );
         String token=adminService.login(umsAdminLoginParam);
         return CommonResult.success(null);
 }
