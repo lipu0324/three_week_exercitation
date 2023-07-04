@@ -1,5 +1,6 @@
 package com.sifu.sfcc.service;
 
+import com.sifu.sfcc.dto.UmsAdminLoginParam;
 import com.sifu.sfcc.dto.UpdateAdminPasswordParam;
 import com.sifu.sfcc.model.UmsAdmin;
 import com.sifu.sfcc.model.UmsPermission;
@@ -91,4 +92,6 @@ public interface UmsAdminService {
     UmsAdmin getCurrentUserAdmin();
     
     int batchBan(List<Long> ids);
+
+    String login(UmsAdminLoginParam umsAdminLoginParam);
 }

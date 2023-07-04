@@ -2,6 +2,7 @@ package com.sifu.sfcc.service;
 
 import com.sifu.sfcc.model.CcLabel;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public interface CcLabelService {
     /**
      * 获取所有标签
      */
-    List<CcLabel> list(String name , Integer status,Integer pageSize , Integer pageNum);
+    HashMap list( String name );
 
     int add(CcLabel member);
 

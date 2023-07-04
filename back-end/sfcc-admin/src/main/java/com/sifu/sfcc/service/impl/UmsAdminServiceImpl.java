@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.sifu.sfcc.bo.AdminUserDetails;
 import com.sifu.sfcc.dao.UmsAdminPermissionRelationDao;
 import com.sifu.sfcc.dao.UmsAdminRoleRelationDao;
+import com.sifu.sfcc.dto.UmsAdminLoginParam;
 import com.sifu.sfcc.dto.UpdateAdminPasswordParam;
 import com.sifu.sfcc.mapper.UmsAdminLoginLogMapper;
 import com.sifu.sfcc.mapper.UmsAdminMapper;
@@ -39,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -322,6 +324,39 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 		um.setStatus(0);
 		return adminMapper.updateByExampleSelective(um, example);
 	}
+
+    @Override
+    //登录业务logic
+    public String login(UmsAdminLoginParam umsAdminLoginParam) {
+       String token=null;
+        UserDetails userDetails= loadUserByUsername(umsAdminLoginParam.getUsername());
+       String passwd=passwordEncoder.encode(umsAdminLoginParam.getPassword());
+
+       if(Objects.isNull(userDetails)){
+           //用户不存在
+           return null;
+       }
+       boolean matches=passwordEncoder.matches(
+         umsAdminLoginParam.getPassword(),
+         userDetails.getPassword()
+       );
+       if (matches)
+       {
+           UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(
+
+                   userDetails.getUsername(),null,userDetails.getAuthorities());
+             SecurityContext context = SecurityContextHolder.getContext();
+             context.setAuthentication( authenticationToken );
+             //生成token
+            token=jwtTokenUtil.generateToken(userDetails);
+
+             //密码相等，可以登录
+       }else{
+           return null;
+           //密码错误，不可以登录
+       }
+        return token;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username){
