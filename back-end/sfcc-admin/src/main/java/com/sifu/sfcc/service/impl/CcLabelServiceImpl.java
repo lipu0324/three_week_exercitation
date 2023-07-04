@@ -5,10 +5,13 @@ import com.sifu.sfcc.mapper.CcLabelMapper;
 import com.sifu.sfcc.model.CcLabel;
 import com.sifu.sfcc.model.CcLabelExample;
 import com.sifu.sfcc.service.CcLabelService;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,19 +23,19 @@ public class CcLabelServiceImpl implements CcLabelService {
     @Autowired
     private CcLabelMapper labelMapper;
     @Override
-    public List<CcLabel> list(String name , Integer status, Integer pageSize , Integer pageNum) {
-        PageHelper.startPage(pageNum , pageSize);
-        CcLabelExample example = new CcLabelExample();
-        CcLabelExample.Criteria criteria = example.createCriteria();
-        if(name != null && !"".equals(name)){
-            criteria.andNameLike("%" +name+ "%");
-        }
-        
-        if(status != 2 ){
-            criteria.andStatusEqualTo(status);
-        }
+    public HashMap<String, Object> list(String name ) {
+        CcLabelExample ccLabelExample = new CcLabelExample();
+        if (StringUtils.hasText(name)){
+            ccLabelExample.createCriteria().andNameLike("%"+name+"%");
 
-        return labelMapper.selectByExample(example);
+        }
+        List<CcLabel> ccLabels =labelMapper.selectByExample(ccLabelExample);
+        labelMapper.countByExample(ccLabelExample);
+        long l =labelMapper.countByExample(ccLabelExample);
+        return new HashMap<String,Object>(){{
+            put("total",l);
+            put("list",ccLabels);
+        }};
     }
 
     @Override
