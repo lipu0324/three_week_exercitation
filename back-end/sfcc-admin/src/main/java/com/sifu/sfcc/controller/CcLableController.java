@@ -8,6 +8,8 @@ import com.sifu.sfcc.service.CcLabelService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/lable")
@@ -33,4 +35,24 @@ public class CcLableController {
         PageHelper.startPage(pageNum,pageSize);
         return CommonResult.success(ccLabelService.list(name));
     }
+    @RequestMapping("/delete/{id}")
+    public CommonResult del(Long id) {
+        int i = ccLabelService.delete(id);
+        if (i>0)
+            return CommonResult.success(i);
+        else
+            return CommonResult.failed("删除失败");
+    }
+    @RequestMapping(value = {"/update","/updateStatus{id}"})
+    public CommonResult update(@RequestBody CcLabel ccLabel,Long id) {
+        int i = ccLabelService.update(ccLabel);
+        return i>0 ? CommonResult.success(i) : CommonResult.failed("更新失败");
+    }
+    @PostMapping("/batchDelete")
+    public CommonResult bathDelete(@RequestParam ArrayList<Long> ids) {
+        int i = ccLabelService.batchDelete(ids);
+        return CommonResult.success(i);
+
+    }
 }
+
