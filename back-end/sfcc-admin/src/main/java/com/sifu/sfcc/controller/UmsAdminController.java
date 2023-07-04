@@ -1,5 +1,6 @@
 package com.sifu.sfcc.controller;
 
+import cn.hutool.core.collection.CollUtil;
 import com.sifu.sfcc.common.api.CommonPage;
 import com.sifu.sfcc.common.api.CommonResult;
 import com.sifu.sfcc.dto.UmsAdminLoginParam;
@@ -67,7 +68,11 @@ public class UmsAdminController {
                 umsAdminLoginParam.getUsername()
         );
         String token=adminService.login(umsAdminLoginParam);
-        return CommonResult.success(null);
+        HashMap<String,String> data=new HashMap<String,String>(){{
+            put("tokenHead",tokenHead);
+            put("token",token);
+        }};
+        return CommonResult.success(data);
 }
     @ApiOperation(value = "刷新token")
     @RequestMapping(value = "/refreshToken", method = RequestMethod.GET)
