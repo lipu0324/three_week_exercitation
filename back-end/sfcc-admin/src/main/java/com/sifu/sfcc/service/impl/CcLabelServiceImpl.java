@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class CcLabelServiceImpl implements CcLabelService {
     @Autowired
-    private CcLabelMapper cclabelMapper;
+    private CcLabelMapper labelMapper;
     @Override
     public HashMap<String, Object> list(String name ) {
         CcLabelExample ccLabelExample = new CcLabelExample();
@@ -29,9 +29,9 @@ public class CcLabelServiceImpl implements CcLabelService {
             ccLabelExample.createCriteria().andNameLike("%"+name+"%");
 
         }
-        List<CcLabel> ccLabels =cclabelMapper.selectByExample(ccLabelExample);
-        cclabelMapper.countByExample(ccLabelExample);
-        long l =cclabelMapper.countByExample(ccLabelExample);
+        List<CcLabel> ccLabels =labelMapper.selectByExample(ccLabelExample);
+        labelMapper.countByExample(ccLabelExample);
+        long l =labelMapper.countByExample(ccLabelExample);
         return new HashMap<String,Object>(){{
             put("total",l);
             put("list",ccLabels);
