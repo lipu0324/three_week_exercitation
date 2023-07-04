@@ -57,7 +57,6 @@ export  function tagsStatusChange(data) {
     url: `/admin-api/label/updateStatus/${data.id}`,
     method:"post",
     data,
-    setHeaders:true,
   })
 }
 
