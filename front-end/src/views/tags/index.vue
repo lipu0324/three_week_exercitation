@@ -116,7 +116,6 @@
 <script>
   import {addTags,delTags,getList,changeTags,tagsStatusChange,batchDel} from '@/api/tags';
   import {formatDate} from '@/utils/date';
-  import result from "element-ui/packages/result";
 
   const defaultListQuery = {
     pageNum: 1,
