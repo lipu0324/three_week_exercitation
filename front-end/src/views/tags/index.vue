@@ -20,8 +20,8 @@
             <el-button
               @click="handleResetSearch()">
               重置
-            </el-button> 
-          </el-form-item>                                 
+            </el-button>
+          </el-form-item>
         </el-form>
       </div>
     </div>
@@ -116,6 +116,7 @@
 <script>
   import {addTags,delTags,getList,changeTags,tagsStatusChange,batchDel} from '@/api/tags';
   import {formatDate} from '@/utils/date';
+  import result from "element-ui/packages/result";
 
   const defaultListQuery = {
     pageNum: 1,
@@ -160,10 +161,14 @@
     methods: {
       // 获取标签列表
       getList() {
+        getList(this.listQuery).then((result)=>{
+          this.list=result.list;
+          this.total=result.data.total;
+        })
       },
       // 修改标签显示状态
       changeTagsStatus(status,data){
-        
+
       },
       // 批量删除
       batchDelete(){
@@ -223,7 +228,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          
+
         });
       },
       handleUpdate(index, row) {
