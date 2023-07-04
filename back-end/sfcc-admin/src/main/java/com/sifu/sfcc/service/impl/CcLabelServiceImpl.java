@@ -1,15 +1,14 @@
 package com.sifu.sfcc.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.sifu.sfcc.mapper.CcLabelMapper;
 import com.sifu.sfcc.model.CcLabel;
 import com.sifu.sfcc.model.CcLabelExample;
 import com.sifu.sfcc.service.CcLabelService;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -69,10 +68,13 @@ public class CcLabelServiceImpl implements CcLabelService {
 		
 	}
 
-	@Override
-	public int batchDelete(List<Long> ids) {
-		CcLabelExample example = new CcLabelExample();
-		example.createCriteria().andIdIn(ids);
-		return labelMapper.deleteByExample(example);
+
+
+    @Override
+	public int batchDelete(ArrayList<Long> ids) {
+		CcLabelExample ccLabelExample = new CcLabelExample();
+        CcLabelExample.Criteria criteria = ccLabelExample.createCriteria();
+        criteria.andIdIn(ids);
+		return labelMapper.deleteByExample(ccLabelExample);
 	}
 }

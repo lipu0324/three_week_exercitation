@@ -2,6 +2,7 @@ package com.sifu.sfcc.service;
 
 import com.sifu.sfcc.model.CcLabel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +25,6 @@ public interface CcLabelService {
     CcLabel get(Long id);
     
     int updateStatus(Long id , Integer status);
-    
-    int batchDelete(List<Long> ids);
+
+    int batchDelete(ArrayList<Long> ids);
 }
