@@ -71,6 +71,7 @@ public class UmsAdminController {
         HashMap<String,String> data=new HashMap<String,String>(){{
             put("tokenHead",tokenHead);
             put("token",token);
+
         }};
         return CommonResult.success(data);
 }

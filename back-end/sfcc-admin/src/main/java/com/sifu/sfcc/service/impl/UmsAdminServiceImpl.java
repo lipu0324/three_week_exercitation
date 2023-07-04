@@ -340,8 +340,11 @@ public class UmsAdminServiceImpl implements UmsAdminService {
          umsAdminLoginParam.getPassword(),
          userDetails.getPassword()
        );
+        System.out.println(umsAdminLoginParam.getPassword());
+        System.out.println(passwd);
        if (matches)
        {
+           System.out.println("密码正确！");
            UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(
 
                    userDetails.getUsername(),null,userDetails.getAuthorities());
@@ -352,10 +355,11 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
              //密码相等，可以登录
        }else{
+           System.out.println("密码错误");
            return null;
            //密码错误，不可以登录
        }
-        return token;
+       return token;
     }
 
     @Override
