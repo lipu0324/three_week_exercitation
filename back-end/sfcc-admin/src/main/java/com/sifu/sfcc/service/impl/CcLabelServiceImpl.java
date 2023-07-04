@@ -22,7 +22,7 @@ public class CcLabelServiceImpl implements CcLabelService {
     @Autowired
     private CcLabelMapper labelMapper;
     @Override
-    public HashMap<String, Object> list(String name ) {
+    public HashMap<String,Object> list(String name ) {
         CcLabelExample ccLabelExample = new CcLabelExample();
         if (StringUtils.hasText(name)){
             ccLabelExample.createCriteria().andNameLike("%"+name+"%");
@@ -77,4 +77,5 @@ public class CcLabelServiceImpl implements CcLabelService {
         criteria.andIdIn(ids);
 		return labelMapper.deleteByExample(ccLabelExample);
 	}
+
 }

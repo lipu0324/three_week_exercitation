@@ -161,9 +161,7 @@
       // 获取标签列表
       getList() {
         getList(this.listQuery).then((result)=>{
-          result.data.list.map((row=>{
-            row.status = row.status == 1 ? false : true;
-          }))
+          console.log(result);
           this.list=result.list;
           this.total=result.data.total;
         })

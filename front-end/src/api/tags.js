@@ -38,7 +38,7 @@ export  function getList(params) {
   return request({
     url: "/admin-api/label/list",
     method:"get",
-    params
+    params:params
   })
 }
 
