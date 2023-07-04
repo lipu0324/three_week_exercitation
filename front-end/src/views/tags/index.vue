@@ -161,12 +161,20 @@
       // 获取标签列表
       getList() {
         getList(this.listQuery).then((result)=>{
+          result.data.list.map((row=>{
+            row.status = row.status == 1 ? false : true;
+          }))
           this.list=result.list;
           this.total=result.data.total;
         })
       },
       // 修改标签显示状态
       changeTagsStatus(status,data){
+        data.status = data.status == 0 ? 1 : 0;
+        tagsStatusChange( data ).then(r=>{
+          console.log(r)
+          this.getList()
+        })
 
       },
       // 批量删除
@@ -227,6 +235,10 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
+          delTags(row).then(r=>{
+            //console.log(r)
+            this.getList()
+          })
 
         });
       },

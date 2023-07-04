@@ -30,10 +30,10 @@ spring:
         min-idle: 0
         time-between-eviction-runs: 1000ms
 
-#  rabbitmq:
-#    host: 127.0.0.1
-#    port: 9097
-#    virtual-host: /sfcc
-#    username: sfcc
-#    password: sfcc
-#    publisher-confirms: true #如果对异步消息需要回调必须设置为true
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /
+    username: guest
+    password: guest
+    publisher-confirms: true #如果对异步消息需要回调必须设置为true
