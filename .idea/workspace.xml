@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1d4a323-2a8e-42f7-a133-160b666677bc" name="更改" comment="加入了失误没有版本控制的代码">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/dependencies-accessors/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/8.1.1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,8 +53,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "G:/three_week_exercitation/front-end",
+    "git-widget-placeholder": "后端",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/14734/Desktop/three_week_exercitation",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -156,6 +144,7 @@
       <workItem from="1688198378854" duration="271000" />
       <workItem from="1688345335757" duration="53000" />
       <workItem from="1688347418968" duration="74000" />
+      <workItem from="1688440213988" duration="70000" />
     </task>
     <task id="LOCAL-00001" summary="后端springboot创建项目">
       <option name="closed" value="true" />

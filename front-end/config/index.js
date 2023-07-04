@@ -21,7 +21,7 @@ module.exports = {
       },
       // 搜索模块
       '/search-api': {
-        target: 'http://localhost:8013',
+        target: 'http://localhost:8083',
         changeOrigin: true,
         pathRewrite: {
           '^/search-api': ''
@@ -29,7 +29,7 @@ module.exports = {
       },
       // 文件服务模块
       '/file-api': {
-        target: 'http://localhost:8013',
+        target: 'http://localhost:8014',
         changeOrigin: true,
         pathRewrite: {
           '^/file-api': ''
@@ -39,7 +39,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8099, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8013, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

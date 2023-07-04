@@ -12,7 +12,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/lable")
+@RequestMapping("/label")
 public class CcLableController {
     @Resource
     CcLabelService ccLabelService;
@@ -20,6 +20,7 @@ public class CcLableController {
     @PostMapping("/add")
     public CommonResult add(@RequestBody CcLabel ccLabel) {
         int res = ccLabelService.add(ccLabel);
+        System.out.println("666");
         if (res>0)
             return CommonResult.success(null);
         else
