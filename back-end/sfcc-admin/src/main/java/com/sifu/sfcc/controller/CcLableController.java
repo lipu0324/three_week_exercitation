@@ -44,7 +44,7 @@ public class CcLableController {
         else
             return CommonResult.failed("删除失败");
     }
-    @RequestMapping(value = {"/update","/updateStatus{id}"})
+    @RequestMapping(value = {"/update","/updateStatus/{id}"})
     public CommonResult update(@RequestBody CcLabel ccLabel,Long id) {
         int i = ccLabelService.update(ccLabel);
         return i>0 ? CommonResult.success(i) : CommonResult.failed("更新失败");

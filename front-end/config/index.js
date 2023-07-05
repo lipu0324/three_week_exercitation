@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
       // admin模块
       '/admin-api': {
-        target: 'http://localhost:8013',
+        target: 'http://localhost:8016',
         changeOrigin: true,
         pathRewrite: {
           '^/admin-api': ''
