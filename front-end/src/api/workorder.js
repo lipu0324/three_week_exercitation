@@ -71,12 +71,13 @@ export function dealOrder(data) {
   })
 }
 
-// 处理工单信息
+//处理工单信息
 export function orderNotice() {
   return request({
     url: '/admin-api/worder/qryToDO',
     method: 'post'
   })
+  //return null;
 }
 
 // 关联工单标签
