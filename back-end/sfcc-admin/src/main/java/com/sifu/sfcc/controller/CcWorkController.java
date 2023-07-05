@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wonder")
+@RequestMapping("/worder")
 public class CcWorkController {
     @Resource
     CcWorkOrderService ccWorkOrderService;
@@ -23,6 +23,7 @@ public class CcWorkController {
         CcWorkOrder ccWorkOrder = ccWorkOrderService.create(ccWorkOrderParam);
         return CommonResult.success(1);
     }
+    @PostMapping("/list")
     public CommonResult list(
             @RequestParam(required = false) Integer pageSize,
             @RequestParam(required = false) Integer pageNum,

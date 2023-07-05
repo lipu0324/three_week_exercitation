@@ -162,7 +162,7 @@
       getList() {
         getList(this.listQuery).then((result)=>{
           console.log(result);
-          this.list=result.list;
+          this.list=result.data.list;
           this.total=result.data.total;
         })
       },
