@@ -139,7 +139,7 @@ export default {
       fetchList({
         pageNum:this.pageNum,
         pageSize:this.pageSize,
-         wstatus:this.tabList[0].value,
+        wstatus:this.tabList[0].value,
         toDoText:this.searchText,
       }).then(r=>{
         this.dataList = r.data;

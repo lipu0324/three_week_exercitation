@@ -378,6 +378,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         SecurityContext ctx = SecurityContextHolder.getContext();
         Authentication auth = ctx.getAuthentication();
         AdminUserDetails adminUserDetails = (AdminUserDetails) auth.getPrincipal();
+        System.out.println();
         return adminUserDetails.getUmsAdmin();
     }
 }
